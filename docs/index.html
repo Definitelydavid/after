@@ -75,23 +75,152 @@
         </div>
       </div>
 
-      <div class="live-console">
-        <div class="console-terminal">
-          <div class="console-topbar">
-            <div class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-            <span class="terminal-title">AGENT TELEMETRY STREAM</span>
-            <div class="terminal-actions">
-              <button id="stream-toggle" class="terminal-btn" type="button" aria-pressed="false">PAUSE</button>
-              <button id="stream-next" class="terminal-btn" type="button">NEXT RUN ↗</button>
+      <!-- Graphical Swarm Dashboard Grid -->
+      <div class="swarm-grid" aria-label="Autonomous agent swarm dashboard">
+        <!-- Agent 1: Scout -->
+        <div class="swarm-card" id="card-scout">
+          <div class="card-header">
+            <span class="card-num">01 / SCOUT AGENT</span>
+            <span class="card-status-badge is-active" id="scout-status"><span class="badge-dot"></span> SCANNING</span>
+          </div>
+          <div class="card-body">
+            <div class="scout-radar-wrap">
+              <svg class="radar-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="50" cy="50" r="44" fill="none" stroke="#b4bba8" stroke-dasharray="2 3" opacity="0.6"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#b4bba8" opacity="0.5"/>
+                <circle cx="50" cy="50" r="15" fill="none" stroke="#b4bba8" opacity="0.6"/>
+                <line x1="50" y1="6" x2="50" y2="94" stroke="#b4bba8" opacity="0.4"/>
+                <line x1="6" y1="50" x2="94" y2="50" stroke="#b4bba8" opacity="0.4"/>
+                <circle cx="50" cy="50" r="2.5" fill="var(--orange)"/>
+                <path class="radar-sweep-cone" d="M50 50 L90 28 A44 44 0 0 0 50 6 Z" fill="var(--orange)" opacity="0.22"/>
+                <circle class="radar-blip" cx="72" cy="34" r="3" fill="var(--orange)"/>
+              </svg>
+            </div>
+            <div class="card-details">
+              <span class="meta-label">SOURCE INGESTION</span>
+              <div class="source-chip" id="scout-source-chip">
+                <span class="chip-host" id="scout-domain">docs.python.org</span>
+                <span class="chip-title" id="scout-citation">aware and naive date/time objects</span>
+              </div>
+              <div class="scout-meta">
+                <span class="scout-tag" id="scout-topic-tag">PRESERVATION</span>
+                <span class="scout-signal" id="scout-signal-status">HTTPS 200 OK</span>
+              </div>
             </div>
           </div>
-          <div class="terminal-body" id="terminal-feed" role="log" aria-live="polite"></div>
-          <div class="terminal-foot">
-            <span class="term-status-tag"><span class="term-status-dot"></span> CONNECTED TO RELAY</span>
-            <span id="term-clock" class="term-clock">UTC 00:00:00</span>
+          <div class="card-foot">
+            <span class="agent-id">ROLE: ops/topic-curator</span>
+            <span class="card-tick" id="scout-tick">#013</span>
           </div>
         </div>
 
+        <!-- Agent 2: Synthesis -->
+        <div class="swarm-card" id="card-synth">
+          <div class="card-header">
+            <span class="card-num">02 / SYNTHESIS WORKER</span>
+            <span class="card-status-badge is-active" id="synth-status"><span class="badge-dot"></span> DRAFTING</span>
+          </div>
+          <div class="card-body">
+            <div class="synth-meter-wrap">
+              <div class="meter-labels">
+                <span class="meta-label">BODY WORD GAUGE</span>
+                <span class="meter-val"><strong id="synth-words-val">0</strong> <span class="gauge-sub">/ 300 words</span></span>
+              </div>
+              <div class="meter-track" role="progressbar" aria-valuemin="0" aria-valuemax="400" aria-valuenow="0" id="synth-meter-track">
+                <div class="meter-bar" id="synth-meter-bar" style="width: 0%;"></div>
+                <div class="meter-target-range" title="Valid target range 150-400 words"></div>
+              </div>
+              <div class="meter-range-hint">
+                <span>0</span>
+                <span class="range-target">BOUNDS: 150–400 WORDS</span>
+                <span>400</span>
+              </div>
+            </div>
+            <div class="teleprinter-screen" id="teleprinter-screen">
+              <span class="teleprinter-text" id="teleprinter-text">Initializing seed synthesis stream...</span>
+              <span class="teleprinter-cursor" id="teleprinter-cursor"></span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="agent-id">WORKER: after-seed-agent</span>
+            <span class="card-speed" id="synth-speed">STREAMING</span>
+          </div>
+        </div>
+
+        <!-- Agent 3: Independent Review -->
+        <div class="swarm-card" id="card-review">
+          <div class="card-header">
+            <span class="card-num">03 / PEER REVIEW AUDITOR</span>
+            <span class="card-status-badge" id="review-status"><span class="badge-dot"></span> AUDITING</span>
+          </div>
+          <div class="card-body">
+            <div class="audit-checklist" id="audit-checklist">
+              <div class="audit-item" id="chk-schema">
+                <span class="audit-icon" id="icon-schema">○</span>
+                <span class="audit-label">JSON Schema v1 Compliance</span>
+              </div>
+              <div class="audit-item" id="chk-source">
+                <span class="audit-icon" id="icon-source">○</span>
+                <span class="audit-label">Public HTTPS Citation Check</span>
+              </div>
+              <div class="audit-item" id="chk-bounds">
+                <span class="audit-icon" id="icon-bounds">○</span>
+                <span class="audit-label">Word Bounds (150–400) Verified</span>
+              </div>
+              <div class="audit-item" id="chk-temporal">
+                <span class="audit-icon" id="icon-temporal">○</span>
+                <span class="audit-label">Zero Hallucination / Date Guard</span>
+              </div>
+            </div>
+            <div class="audit-stamp-badge" id="dash-audit-stamp" hidden>
+              <span class="audit-stamp-icon">✓</span>
+              <span class="audit-stamp-text">PEER REVIEW CERTIFIED</span>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="agent-id">AUDITOR: after-editor-agent</span>
+            <span class="audit-verdict" id="audit-verdict-label">INSPECTION</span>
+          </div>
+        </div>
+
+        <!-- Agent 4 & 5: Notary & Git Commits -->
+        <div class="swarm-card" id="card-notary">
+          <div class="card-header">
+            <span class="card-num">04 &amp; 05 / NOTARY &amp; COMMITS</span>
+            <span class="card-status-badge" id="notary-status"><span class="badge-dot"></span> SEALING</span>
+          </div>
+          <div class="card-body">
+            <div class="notary-digest-wrap">
+              <div class="digest-header">
+                <span class="meta-label">CRYPTOGRAPHIC DIGEST</span>
+                <span class="lock-tag" id="lock-tag"><span class="lock-icon">🔒</span> LOCKING</span>
+              </div>
+              <div class="digest-display">
+                <span class="hash-lead">SHA-256</span>
+                <code class="hash-text" id="dash-hash-display">CALCULATING DIGEST...</code>
+              </div>
+            </div>
+            <div class="repo-targets-list">
+              <div class="repo-target-row" id="repo-row-after">
+                <span class="repo-dot">●</span>
+                <span class="repo-name">after-training/after</span>
+                <code class="repo-sha" id="dash-commit-pill">commit 22ca7cf</code>
+              </div>
+              <div class="repo-target-row" id="repo-row-iiab">
+                <span class="repo-dot iiab-dot">●</span>
+                <span class="repo-name">iiab/iiab (Library of Alexandria)</span>
+                <span class="repo-status-tag" id="dash-iiab-tag">SYNC READY</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-foot">
+            <span class="agent-id">RELAY: sha-256 notary &amp; git</span>
+            <span class="card-tree" id="dash-tree-height">MAIN BRANCH</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="live-console">
         <div class="console-canvas">
           <div class="canvas-topbar">
             <span class="canvas-file" id="canvas-file">entries/record-a-time-with-context.json</span>
@@ -178,6 +307,22 @@
           <div class="canvas-foot">
             <span id="canvas-words">0 words</span>
             <span id="canvas-author">AUTHOR: after-seed-agent (agent)</span>
+          </div>
+        </div>
+
+        <div class="console-terminal">
+          <div class="console-topbar">
+            <div class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="terminal-title">AGENT TELEMETRY STREAM</span>
+            <div class="terminal-actions">
+              <button id="stream-toggle" class="terminal-btn" type="button" aria-pressed="false">PAUSE</button>
+              <button id="stream-next" class="terminal-btn" type="button">NEXT RUN ↗</button>
+            </div>
+          </div>
+          <div class="terminal-body" id="terminal-feed" role="log" aria-live="polite"></div>
+          <div class="terminal-foot">
+            <span class="term-status-tag"><span class="term-status-dot"></span> CONNECTED TO RELAY</span>
+            <span id="term-clock" class="term-clock">UTC 00:00:00</span>
           </div>
         </div>
       </div>

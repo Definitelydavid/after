@@ -238,6 +238,39 @@ function initLiveSwarm() {
   const metricPhase = $('live-metric-phase');
   const metricSha = $('live-metric-sha');
 
+  // Swarm Card 1: Scout
+  const scoutDomain = $('scout-domain');
+  const scoutCitation = $('scout-citation');
+  const scoutTopicTag = $('scout-topic-tag');
+  const scoutTick = $('scout-tick');
+  const scoutStatus = $('scout-status');
+
+  // Swarm Card 2: Synthesis
+  const synthWordsVal = $('synth-words-val');
+  const synthMeterBar = $('synth-meter-bar');
+  const teleprinterText = $('teleprinter-text');
+  const synthStatus = $('synth-status');
+
+  // Swarm Card 3: Peer Review
+  const reviewStatus = $('review-status');
+  const chkSchema = $('chk-schema');
+  const chkSource = $('chk-source');
+  const chkBounds = $('chk-bounds');
+  const chkTemporal = $('chk-temporal');
+  const iconSchema = $('icon-schema');
+  const iconSource = $('icon-source');
+  const iconBounds = $('icon-bounds');
+  const iconTemporal = $('icon-temporal');
+  const dashAuditStamp = $('dash-audit-stamp');
+  const auditVerdictLabel = $('audit-verdict-label');
+
+  // Swarm Card 4: Notary & Commits
+  const notaryStatus = $('notary-status');
+  const lockTag = $('lock-tag');
+  const dashHashDisplay = $('dash-hash-display');
+  const dashCommitPill = $('dash-commit-pill');
+  const dashIiabTag = $('dash-iiab-tag');
+
   if (!terminalFeed || !canvasBody) return;
 
   let activeRunIndex = 0;
@@ -329,6 +362,50 @@ function initLiveSwarm() {
     canvasWords.textContent = '0 words';
     canvasAuthor.textContent = `AUTHOR: ${run.author_id} (agent)`;
 
+    // Update Swarm Card 1: Scout
+    if (scoutDomain) scoutDomain.textContent = new URL(run.sources[0].url).hostname;
+    if (scoutCitation) scoutCitation.textContent = run.sources[0].title;
+    if (scoutTopicTag) scoutTopicTag.textContent = run.topic.toUpperCase();
+    if (scoutTick) scoutTick.textContent = run.tick;
+    if (scoutStatus) {
+      scoutStatus.className = 'card-status-badge is-active';
+      scoutStatus.innerHTML = '<span class="badge-dot"></span> SCANNING';
+    }
+
+    // Reset Swarm Card 2: Synthesis
+    if (synthWordsVal) synthWordsVal.textContent = '0';
+    if (synthMeterBar) synthMeterBar.style.width = '0%';
+    if (teleprinterText) teleprinterText.textContent = `Awaiting bundle dispatch: entries/${run.id}.json...`;
+    if (synthStatus) {
+      synthStatus.className = 'card-status-badge';
+      synthStatus.innerHTML = '<span class="badge-dot"></span> STANDBY';
+    }
+
+    // Reset Swarm Card 3: Peer Review
+    [[chkSchema, iconSchema], [chkSource, iconSource], [chkBounds, iconBounds], [chkTemporal, iconTemporal]].forEach(([row, icon]) => {
+      if (row) row.classList.remove('is-checked');
+      if (icon) icon.textContent = '○';
+    });
+    if (dashAuditStamp) dashAuditStamp.hidden = true;
+    if (reviewStatus) {
+      reviewStatus.className = 'card-status-badge';
+      reviewStatus.innerHTML = '<span class="badge-dot"></span> QUEUED';
+    }
+    if (auditVerdictLabel) auditVerdictLabel.textContent = 'INSPECTION';
+
+    // Reset Swarm Card 4: Notary & Commits
+    if (notaryStatus) {
+      notaryStatus.className = 'card-status-badge';
+      notaryStatus.innerHTML = '<span class="badge-dot"></span> STANDBY';
+    }
+    if (lockTag) lockTag.innerHTML = '<span class="lock-icon">⏱</span> WAITING';
+    if (dashHashDisplay) dashHashDisplay.textContent = 'AWAITING PAYLOAD...';
+    if (dashCommitPill) dashCommitPill.textContent = '—';
+    if (dashIiabTag) {
+      dashIiabTag.textContent = 'STANDBY';
+      dashIiabTag.classList.remove('is-synced');
+    }
+
     addTermLine('badge-topic', 'TOPIC', `Unprocessed bundle selected: <strong class="term-highlight">${run.id}</strong> (curated topic: ${run.topic})`);
     addTermLine('badge-topic', 'SOURCES', `Ingested 1 primary citation: <em>${run.sources[0].title}</em>`);
 
@@ -337,6 +414,14 @@ function initLiveSwarm() {
       setPipelineStep('draft');
       metricPhase.textContent = 'Synthesizing draft';
       canvasPhase.textContent = '02 / SEED SYNTHESIS';
+      if (scoutStatus) {
+        scoutStatus.className = 'card-status-badge';
+        scoutStatus.innerHTML = '<span class="badge-dot"></span> INGESTED';
+      }
+      if (synthStatus) {
+        synthStatus.className = 'card-status-badge is-active';
+        synthStatus.innerHTML = '<span class="badge-dot"></span> DRAFTING';
+      }
       addTermLine('badge-seed', 'SEED-AGENT', `Relay task dispatched to Claude provider. Generating 150–400 word schema entry...`);
 
       const paragraphs = run.body.split(/\n\s*\n/).filter(Boolean);
@@ -367,6 +452,14 @@ function initLiveSwarm() {
             wordIdx++;
             totalWords++;
             canvasWords.textContent = `${totalWords} words written`;
+            if (synthWordsVal) synthWordsVal.textContent = String(totalWords);
+            if (synthMeterBar) {
+              const pct = Math.min(100, Math.round((totalWords / 300) * 100));
+              synthMeterBar.style.width = pct + '%';
+            }
+            if (teleprinterText && wordsPerPara[pIdx]) {
+              teleprinterText.textContent = wordsPerPara[pIdx].slice(0, wordIdx).join(' ');
+            }
           } else {
             pIdx++;
             wordIdx = 0;
@@ -379,6 +472,10 @@ function initLiveSwarm() {
           clearInterval(typeInterval);
           cursor.remove();
           canvasWords.textContent = `${totalWords} words (valid bounds 150–400)`;
+          if (synthStatus) {
+            synthStatus.className = 'card-status-badge';
+            synthStatus.innerHTML = '<span class="badge-dot"></span> COMPLETE';
+          }
           addTermLine('badge-seed', 'SEED-AGENT', `Draft body synthesized (${totalWords} words). Dispatched to private review staging.`);
 
           runTimeout = setTimeout(() => {
@@ -386,6 +483,21 @@ function initLiveSwarm() {
             setPipelineStep('review');
             metricPhase.textContent = 'Independent Review';
             canvasPhase.textContent = '03 / PEER REVIEW';
+            if (reviewStatus) {
+              reviewStatus.className = 'card-status-badge is-active';
+              reviewStatus.innerHTML = '<span class="badge-dot"></span> AUDITING';
+            }
+            if (chkSchema) { chkSchema.classList.add('is-checked'); if (iconSchema) iconSchema.textContent = '✓'; }
+            setTimeout(() => {
+              if (chkSource) { chkSource.classList.add('is-checked'); if (iconSource) iconSource.textContent = '✓'; }
+            }, 300);
+            setTimeout(() => {
+              if (chkBounds) { chkBounds.classList.add('is-checked'); if (iconBounds) iconBounds.textContent = '✓'; }
+            }, 600);
+            setTimeout(() => {
+              if (chkTemporal) { chkTemporal.classList.add('is-checked'); if (iconTemporal) iconTemporal.textContent = '✓'; }
+            }, 900);
+
             addTermLine('badge-editor', 'EDITOR-AGENT', `Independent session verifying claims against cited sources...`);
             addTermLine('badge-editor', 'VALIDATION', `Checks: schema ✓, non-future dates ✓, zero fabricated human identities ✓.`);
 
@@ -396,12 +508,24 @@ function initLiveSwarm() {
               stampScope.textContent = run.review_scope;
               stampSha.textContent = run.sha256;
               canvasStamp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              if (dashAuditStamp) dashAuditStamp.hidden = false;
+              if (reviewStatus) {
+                reviewStatus.className = 'card-status-badge';
+                reviewStatus.innerHTML = '<span class="badge-dot"></span> VERIFIED';
+              }
+              if (auditVerdictLabel) auditVerdictLabel.textContent = 'APPROVED';
               addTermLine('badge-editor', 'VERDICT', `<span style="color:#4c1;font-weight:700">APPROVED</span> — zero issues found. Review scope certified.`);
 
               setPipelineStep('seal');
               metricPhase.textContent = 'Cryptographic Seal';
               metricSha.textContent = run.sha256.slice(0, 12);
               canvasPhase.textContent = '04 / SHA-256 NOTARY';
+              if (notaryStatus) {
+                notaryStatus.className = 'card-status-badge is-active';
+                notaryStatus.innerHTML = '<span class="badge-dot"></span> SEALING';
+              }
+              if (lockTag) lockTag.innerHTML = '<span class="lock-icon">🔒</span> LOCKED';
+              if (dashHashDisplay) dashHashDisplay.textContent = run.sha256;
               addTermLine('badge-archivist', 'NOTARY', `Computed content SHA-256: <code class="term-highlight">${run.sha256.slice(0, 16)}...</code>`);
 
               runTimeout = setTimeout(() => {
@@ -409,6 +533,15 @@ function initLiveSwarm() {
                 setPipelineStep('commit');
                 metricPhase.textContent = 'Committed to git';
                 canvasPhase.textContent = '05 / GIT APPENDED';
+                if (notaryStatus) {
+                  notaryStatus.className = 'card-status-badge';
+                  notaryStatus.innerHTML = '<span class="badge-dot"></span> IMMUTABLE';
+                }
+                if (dashCommitPill) dashCommitPill.textContent = 'commit ' + run.commit_sha;
+                if (dashIiabTag) {
+                  dashIiabTag.textContent = 'SYNCED';
+                  dashIiabTag.classList.add('is-synced');
+                }
                 addTermLine('badge-archivist', 'GIT', `Commit created: <code class="term-highlight">${run.commit_sha}</code>. Main branch updated.`);
                 addTermLine('badge-archivist', 'STATE', `Snapshot height advanced. Archive immutable and tamper-evident.`);
 
@@ -548,16 +681,52 @@ function initLiveSwarm() {
       const authorId = slug(authorName);
 
       setPipelineStep('topic');
+      if (scoutDomain) scoutDomain.textContent = new URL(sourceURL).hostname;
+      if (scoutCitation) scoutCitation.textContent = sourceTitle;
+      if (scoutTopicTag) scoutTopicTag.textContent = topic.toUpperCase();
+      if (scoutTick) scoutTick.textContent = '#PROPOSAL';
+      if (scoutStatus) {
+        scoutStatus.className = 'card-status-badge is-active';
+        scoutStatus.innerHTML = '<span class="badge-dot"></span> INGESTING';
+      }
       addTermLine('badge-topic', 'OPERATOR', `Ingesting interactive proposal: <strong class="term-highlight">${entryId}</strong> (topic: ${topic})`);
 
       await new Promise(r => setTimeout(r, 600));
 
       setPipelineStep('draft');
+      if (scoutStatus) {
+        scoutStatus.className = 'card-status-badge';
+        scoutStatus.innerHTML = '<span class="badge-dot"></span> INGESTED';
+      }
+      if (synthStatus) {
+        synthStatus.className = 'card-status-badge is-active';
+        synthStatus.innerHTML = '<span class="badge-dot"></span> SYNTHESIZED';
+      }
+      if (synthWordsVal) synthWordsVal.textContent = String(words);
+      if (synthMeterBar) {
+        const pct = Math.min(100, Math.round((words / 300) * 100));
+        synthMeterBar.style.width = pct + '%';
+      }
+      if (teleprinterText) teleprinterText.textContent = summary;
       addTermLine('badge-seed', 'SEED-AGENT', `Synthesized JSON payload (${words} words). Target: entries/${entryId}.json`);
 
       await new Promise(r => setTimeout(r, 700));
 
       setPipelineStep('review');
+      if (synthStatus) {
+        synthStatus.className = 'card-status-badge';
+        synthStatus.innerHTML = '<span class="badge-dot"></span> COMPLETE';
+      }
+      if (reviewStatus) {
+        reviewStatus.className = 'card-status-badge is-active';
+        reviewStatus.innerHTML = '<span class="badge-dot"></span> AUDITING';
+      }
+      [[chkSchema, iconSchema], [chkSource, iconSource], [chkBounds, iconBounds], [chkTemporal, iconTemporal]].forEach(([row, icon]) => {
+        if (row) row.classList.add('is-checked');
+        if (icon) icon.textContent = '✓';
+      });
+      if (dashAuditStamp) dashAuditStamp.hidden = false;
+      if (auditVerdictLabel) auditVerdictLabel.textContent = 'APPROVED';
       addTermLine('badge-editor', 'EDITOR-AGENT', `Checking CC-BY-4.0 schema, non-future dates, source validity...`);
       addTermLine('badge-editor', 'VALIDATION', `Checks: schema ✓, valid public source (${new URL(sourceURL).hostname}) ✓, declared ${authorKind} attribution ✓.`);
 
@@ -586,9 +755,24 @@ function initLiveSwarm() {
       setPipelineStep('seal');
       const jsonText = JSON.stringify(entryObj, null, 2) + '\n';
       const digest = await computeDigest(jsonText);
+      if (notaryStatus) {
+        notaryStatus.className = 'card-status-badge is-active';
+        notaryStatus.innerHTML = '<span class="badge-dot"></span> SEALED';
+      }
+      if (lockTag) lockTag.innerHTML = '<span class="lock-icon">🔒</span> LOCKED';
+      if (dashHashDisplay) dashHashDisplay.textContent = digest;
       addTermLine('badge-archivist', 'NOTARY', `Computed SHA-256 digest: <code class="term-highlight">${digest}</code>`);
 
       setPipelineStep('commit');
+      if (notaryStatus) {
+        notaryStatus.className = 'card-status-badge';
+        notaryStatus.innerHTML = '<span class="badge-dot"></span> READY';
+      }
+      if (dashCommitPill) dashCommitPill.textContent = 'DUAL COMMIT READY';
+      if (dashIiabTag) {
+        dashIiabTag.textContent = 'READY';
+        dashIiabTag.classList.add('is-synced');
+      }
       addTermLine('badge-archivist', 'GIT', `Dual-commit ready: Save local copy to <strong class="term-highlight">after-training/after</strong>.`);
       addTermLine('badge-archivist', 'ALEXANDRIA', `Upstream commit formatted for Library of Alexandria (<strong class="term-highlight">iiab/iiab</strong>).`);
 
