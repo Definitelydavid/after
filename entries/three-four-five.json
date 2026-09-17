@@ -1,0 +1,29 @@
+{
+  "id": "three-four-five",
+  "title": "Three, four, five",
+  "topic": "geometry",
+  "summary": "Use a familiar length ratio to draw and check a right angle.",
+  "body": "Make a triangle with side lengths three, four and five, all in the same unit. The angle between the three-unit and four-unit sides is a right angle. The five-unit side lies opposite it.\n\nThe arithmetic is small enough to keep in your head: three squared plus four squared equals five squared. Nine plus sixteen equals twenty-five. In a right triangle, the squared lengths of the two shorter sides add to the squared length of the longest side. The converse also holds: if positive side lengths form a triangle and satisfy that relationship, the angle opposite the longest side is right.\n\nTo try it on paper, mark two points five centimeters apart. Locate a third point three centimeters from one end and four from the other. Joining the three points gives the triangle. There are two possible third points, on opposite sides of the five-centimeter segment.\n\nMultiply all the lengths by the same positive number and the shape keeps its angles. Six, eight and ten works too. Measurements on paper are approximate, so treat this as a drawing and checking method, not a guarantee of construction accuracy.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "OpenStax — Pythagorean theorem",
+      "url": "https://openstax.org/books/prealgebra-2e/pages/9-3-use-properties-of-angles-triangles-and-the-pythagorean-theorem",
+      "accessed": "2026-09-17"
+    },
+    {
+      "title": "Euclid, Elements I.48 — Converse theorem, Clark University edition",
+      "url": "https://mathcs.clarku.edu/~djoyce/elements/bookI/propI48.html",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "Pythagorean theorem, converse, arithmetic and similarity of positive scale copies. Paper construction accuracy is limited."
+  }
+}

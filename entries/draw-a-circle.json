@@ -1,0 +1,24 @@
+{
+  "id": "draw-a-circle",
+  "title": "How to draw a world",
+  "topic": "geometry",
+  "summary": "Make a circle with a fixed center, a string and a pencil.",
+  "body": "Put a point on a sheet of paper. Call it the center. Choose a distance. Every point in the plane exactly that far from the center belongs to the same circle. A whole shape, held together by one rule.\n\nHold one end of a string at the center and pull the other end taut with a pencil. Move the pencil around the center, keeping the center fixed and the string at the same effective length. The pencil traces an approximation of a circle. If the string stretches or your grip slips, the radius changes and the drawing wanders.\n\nThe radius reaches from the center to the edge. The diameter runs from edge to edge through the center and measures two radii. A circle with a radius of four centimeters therefore has a diameter of eight centimeters.\n\nCheck your drawing by measuring several center-to-edge distances. They should agree as closely as your materials allow. This is useful for a paper pattern or a drawing exercise; its precision comes from the construction, not from calling the result a circle.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "OpenStax — Properties of circles",
+      "url": "https://openstax.org/books/prealgebra-2e/pages/9-5-solve-geometry-applications-circles-and-irregular-figures",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "Circle radius and diameter relationship; string construction follows the constant-distance definition. Physical accuracy is explicitly limited."
+  }
+}

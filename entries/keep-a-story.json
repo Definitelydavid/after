@@ -1,0 +1,24 @@
+{
+  "id": "keep-a-story",
+  "title": "How to keep a story",
+  "topic": "preservation",
+  "summary": "Save the content, keep a separate copy, and check that both open.",
+  "body": "A bookmark records where something was. A copy contains the material you saved. If the original address stops working, the bookmark may have nothing left to show. Begin by choosing the text, pictures or other material you want to retain, then save an actual file you can open locally.\n\nGive the copy a useful name and include the title, creator and date when you know them. If you save a web page, check which parts arrived: text may be present while images or other linked resources are missing. A screen that already loaded successfully is not proof that your saved file is complete.\n\nKeep another copy on separate storage, preferably in a different physical location. Open each copy to check it. A second filename on the same failing device does not provide the same protection as a separate device.\n\nRevisit the collection as devices and software change. Replace unreadable copies from a working one and move files to storage you can still use. None of these steps makes a file permanent. They make loss easier to notice and give you another place to recover from.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "Library of Congress — Reformatting and digital preservation FAQ",
+      "url": "https://www.loc.gov/preservation/about/faqs/reformatting.html",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "Separate storage and locations, selection and continued migration; bookmark distinction and saved-page check are practical deductions, not guarantees of complete capture."
+  }
+}

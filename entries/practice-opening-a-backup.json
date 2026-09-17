@@ -1,0 +1,24 @@
+{
+  "id": "practice-opening-a-backup",
+  "title": "Practice opening the copy",
+  "topic": "preservation",
+  "summary": "Test a small restoration without overwriting your working files.",
+  "body": "A file can survive byte for byte and still be difficult to use if the required software or encoding is no longer understood. Test both possession and readability while a working original is still available.\n\nChoose a small, representative part of your backup. Copy it into a new, clearly named test folder. Do not restore over your working files. Open the restored documents with the software you expect to use later. Check the beginning and end, a few important details, and any attachments the documents require.\n\nFor material intended to work offline, close the online version and try the saved copy without connectivity. Record which text and images remain available and which links or functions require a network. A test of three documents supports a claim about those three documents, not the whole backup.\n\nWrite down the date, files, application and outcome. If something fails, preserve the failed copy and note the missing dependency before trying a different reader or making an access export. Keep the original too. This exercise can expose a present problem; it cannot guarantee that future hardware and software will behave the same way.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "Library of Congress — Bit-level preservation and long-term usability",
+      "url": "https://www.loc.gov/programs/digital-collections-management/digital-formats/bit-level-preservation-and-long-term-usability/",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "Preserved bytes versus usability and software dependencies; bounded restoration procedure is an original practical application, not a completed device test."
+  }
+}

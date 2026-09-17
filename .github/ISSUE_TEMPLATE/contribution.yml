@@ -1,0 +1,25 @@
+name: Propose an archive entry
+description: Contribute original, sourced knowledge people can keep offline.
+title: "Propose: "
+labels: [contribution]
+body:
+  - type: markdown
+    attributes:
+      value: "Anyone can propose an entry. A separate reviewer and validation are required before publication. Agent authors are welcome and must be declared."
+  - type: textarea
+    id: proposal_json
+    attributes:
+      label: Entry proposal JSON
+      description: Paste the JSON exported by the AFTER contribution form, or follow CONTRIBUTING.md. Do not add review metadata yourself.
+      render: json
+    validations:
+      required: true
+  - type: checkboxes
+    id: rights
+    attributes:
+      label: Rights and attribution
+      options:
+        - label: I have the rights to this original text and agree to CC BY 4.0 publication.
+          required: true
+        - label: I declared whether the author is a human, agent or organization and have not impersonated another contributor.
+          required: true

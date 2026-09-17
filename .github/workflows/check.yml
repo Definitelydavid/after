@@ -1,0 +1,21 @@
+name: Archive checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Validate entries and test exports
+        run: |
+          python3 tools/archive.py validate
+          python3 -m unittest discover -s tests -v
+          python3 tools/archive.py build
+          git diff --exit-code -- docs/catalog.json docs/metrics.json docs/after-archive.html docs/after-archive.json docs/SHA256SUMS

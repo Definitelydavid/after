@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="640" viewBox="0 0 680 640">
+<defs><linearGradient id="top" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff8956"/><stop offset=".6" stop-color="#f66431"/><stop offset="1" stop-color="#e64c21"/></linearGradient><linearGradient id="front" x2="0" y2="1"><stop stop-color="#da4921"/><stop offset="1" stop-color="#ad3519"/></linearGradient><linearGradient id="side" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ed5b2b"/><stop offset="1" stop-color="#be361a"/></linearGradient><linearGradient id="metal"><stop stop-color="#babeb0"/><stop offset=".35" stop-color="#e5e7da"/><stop offset=".7" stop-color="#959f8c"/><stop offset="1" stop-color="#c4c8b9"/></linearGradient><filter id="shadow"><feGaussianBlur stdDeviation="13"/></filter><pattern id="ribs" width="9" height="9" patternUnits="userSpaceOnUse"><path d="M0 1H9" stroke="#913419" stroke-width="1.6" opacity=".28"/><path d="M0 3H9" stroke="#ffac71" stroke-width=".9" opacity=".18"/></pattern></defs>
+<ellipse cx="330" cy="491" rx="185" ry="38" fill="#7b816c" opacity=".18" filter="url(#shadow)"/>
+<!-- The illustration is an authored fictional archive enclosure, not a product photograph. -->
+<path d="M434 277 503 244 538 250 538 280 469 313" fill="#464b40"/><path d="m500 243 29-14 26 15-29 14Z" fill="url(#metal)"/><path d="m526 258 29-14v29l-29 14Z" fill="#8d9786"/><path d="m534 248 41-20" stroke="#56624d" stroke-width="16"/><path d="m534 248 41-20" stroke="#76836a" stroke-width="10"/>
+<path d="m155 336 220-100 177 91-220 105Z" fill="#973718"/>
+<path d="m149 297 220-101q7-3 15 1l173 89v122q0 9-8 13l-213 104q-6 3-12 0L151 432q-7-4-7-12V309q0-8 5-12Z" fill="url(#front)"/>
+<path d="m333 397 224-107v117q0 10-9 14L335 525Z" fill="url(#side)"/>
+<path d="m333 407 215-103v104l-215 104Z" fill="url(#ribs)" opacity=".55"/>
+<path d="m144 308 187 95v112l-179-92q-8-4-8-14Z" fill="url(#front)"/>
+<path d="m151 298 218-102q8-4 15 0l170 88q10 5 0 10L338 397q-7 3-14 0l-172-88q-11-6-1-11Z" fill="url(#top)" stroke="#fa8d59" stroke-width="1.5"/>
+<path d="m169 299 203-94 161 84-202 97Z" fill="none" stroke="#b44422" stroke-width="1" opacity=".6"/>
+<path d="m180 298 190-88 151 78-190 91Z" fill="none" stroke="#ffa16d" stroke-width="1" opacity=".7"/>
+<g transform="matrix(.86 -.40 .83 .43 241 304)"><rect x="-16" y="-31" width="185" height="116" rx="4" fill="#eb5a2c" stroke="#b73c1b"/><text x="2" y="17" fill="#ffe3c4" font-family="Arial,Helvetica,sans-serif" font-size="43" font-weight="900" letter-spacing="-2">AFTER</text><path d="M3 31H152" stroke="#f99c68"/><text x="3" y="48" fill="#ffe3c4" font-family="monospace" font-size="8" letter-spacing="1">LOCAL COPY / VOL.001</text><text x="3" y="63" fill="#8f2f19" font-family="monospace" font-size="6">KEEP SOMETHING ON YOURS.</text></g>
+<g fill="#953b22" stroke="#ff995f" stroke-width="1"><ellipse cx="169" cy="302" rx="6" ry="3"/><ellipse cx="372" cy="211" rx="6" ry="3"/><ellipse cx="527" cy="290" rx="6" ry="3"/><ellipse cx="331" cy="380" rx="6" ry="3"/></g><g stroke="#572719" stroke-width="1"><path d="m166 302 6 0m197-91h6m151 79h4m-198 90h6"/></g>
+<path d="m357 419 107-51v28l-107 52Z" fill="#342b20" stroke="#9b3219" stroke-width="2"/><path d="m364 422 92-44v12l-92 44Z" fill="#323a25"/>
+<g transform="matrix(.89 -.43 0 1 369 425)"><circle cx="0" cy="-3" r="2" fill="#c4ee8c"/><text x="7" y="0" fill="#c4ee8c" font-family="monospace" font-size="6">LOCAL COPY</text></g>
+<path d="m477 361 29-14v37l-29 14Z" fill="#a03619"/><path d="m484 362 15-7v21l-15 7Z" fill="#4d3a26"/><path d="m516 346 15-7v36l-15 7Z" fill="#fc8050" stroke="#d34a21"/>
+<g transform="matrix(.89 .45 0 1 170 352)"><rect width="93" height="43" rx="2" fill="#edaf72"/><text x="7" y="12" font-family="monospace" font-size="6" fill="#623922">PROPERTY OF THE HOLDER</text><path d="M8 21v14m3-14v14m3-14v14m5-14v14m2-14v14m4-14v14m3-14v14m6-14v14m2-14v14m4-14v14m6-14v14m3-14v14m5-14v14m2-14v14m3-14v14m6-14v14m3-14v14m4-14v14m5-14v14m2-14v14" stroke="#67482e" stroke-width="1.5"/></g>
+<path d="m158 429 165 85v12L157 440Z" fill="#3f3f31"/><path d="m335 526 204-99v-12l-204 98Z" fill="#514d36"/>
+</svg>

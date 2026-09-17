@@ -1,0 +1,29 @@
+{
+  "id": "sketch-a-sine-wave",
+  "title": "The shape of a wave",
+  "topic": "mathematics",
+  "summary": "Turn steady circular motion into a simple graph of height against time.",
+  "body": "Imagine a dot traveling around a circle at a steady angular speed. Start it at the rightmost point and move counterclockwise. Watch its height above or below the horizontal line through the center. Plot that height against time and you trace a sine wave.\n\nMark five moments, separated by quarter turns. The dot starts at the middle height, reaches the top, returns to the middle, reaches the bottom, then returns to its starting height. On your graph those heights are zero, plus the radius, zero, minus the radius, zero. Draw a smooth curve through them.\n\nThe amplitude is the distance from the middle height to either extreme. The period is the time required for one complete repeat. If a turn takes four seconds, the period is four seconds; two turns in the same time halve the period.\n\nThe dot never stops moving around the circle. At the top and bottom, only its vertical motion momentarily has zero speed. This graph is a mathematical model. Real recordings can combine many patterns and need not look like a single sine wave.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "OpenStax — Unit circle",
+      "url": "https://openstax.org/books/algebra-and-trigonometry/pages/7-3-unit-circle",
+      "accessed": "2026-09-17"
+    },
+    {
+      "title": "OpenStax — Graphs of sine and cosine",
+      "url": "https://openstax.org/books/algebra-and-trigonometry/pages/8-1-graphs-of-the-sine-and-cosine-functions",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "Unit-circle height interpretation, phase choice, amplitude and period; illustrative arithmetic checked. No claim about a real recorded waveform."
+  }
+}

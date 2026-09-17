@@ -1,0 +1,24 @@
+{
+  "id": "read-a-csv-export",
+  "title": "Read a table without its original app",
+  "topic": "computing",
+  "summary": "Recognize CSV records, quoted fields and the context a bare table cannot supply.",
+  "body": "A CSV file represents a table as text. In a common form, commas separate fields and line breaks separate records. The first record may contain column names. A small example is a header reading item,count followed by a record reading pencil,4.\n\nA comma inside a value needs different treatment from a comma between values. In the convention documented by RFC 4180, surround a field containing a comma, quotation mark or line break with double quotation marks. A quotation mark inside a quoted field is written twice. That is why simply splitting every line at every comma can damage a table.\n\nKeep the original export untouched and inspect a copy in a text editor. Identify its separator, text encoding and whether it has a header. CSV implementations vary; do not assume every file uses the same conventions.\n\nSave a short description of what each column means, including units and date conventions. A value such as 03/04 is ambiguous without context. CSV can carry cell values, but the text alone does not explain the calculations or meaning behind them. Check representative records after importing into a different program.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "RFC Editor — RFC 4180, common CSV format",
+      "url": "https://www.rfc-editor.org/rfc/rfc4180",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "RFC 4180 field quoting, optional header and implementation differences. Metadata/import checks are practical deductions; no spreadsheet fidelity promise."
+  }
+}

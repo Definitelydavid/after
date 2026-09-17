@@ -1,0 +1,24 @@
+{
+  "id": "build-an-offline-index",
+  "title": "Leave a map beside the files",
+  "topic": "preservation",
+  "summary": "Make a small collection discoverable with a plain-text index.",
+  "body": "A folder becomes more useful when someone can tell what it contains without opening every file. Create an index.txt beside the collection. Start with the collection's name, purpose and the date you last updated the index.\n\nFor each item, record its relative filename, a readable title and one sentence explaining what it contains. A relative filename such as notes/circle.txt describes a location inside the collection rather than a location that exists only on your computer. Keep the folder and its index together when you copy them.\n\nAdd a few plain-language search words when the title is ambiguous. For a file called session-03.txt, \"paper folding, square center, geometry\" is more helpful than another unexplained number. This is a suggested convention, not a cataloging standard.\n\nOpen the index in a basic text editor and use Find to locate a topic. Then follow the written path and open the named file. Repeat for a few items, including one inside a subfolder. Update the index whenever a file moves or changes meaning. An index describes the collection; it does not replace the files or prove that they remain readable.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "Library of Congress — Keeping personal digital records",
+      "url": "https://digitalpreservation.gov/personalarchiving/records.html",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "Descriptive filenames, folder organization and accompanying descriptions. Relative paths, index fields and Find exercise are an original implementation suggestion."
+  }
+}

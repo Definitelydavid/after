@@ -1,0 +1,24 @@
+{
+  "id": "inspect-json-data",
+  "title": "Inspect a JSON export before using it",
+  "topic": "computing",
+  "summary": "Find the structure in a text export and separate successful parsing from valid content.",
+  "body": "JSON stores structured data as text. Curly braces enclose an object made of name-and-value pairs. Square brackets enclose an array, which is an ordered list. Strings use double quotation marks. Numbers, true, false and null can also appear as values.\n\nWork on a copy of an export. A formatted view makes nesting easier to follow without changing the source file. If Python 3 is already installed, its documented command-line formatter can display a file with the command python3 -m json.tool archive.json. The filename is an example; the command reads it and prints a formatted representation. Nothing in this note runs automatically.\n\nIf the parser reports an error, keep the original and investigate the reported location. A missing comma or quote may be the cause, but do not guess away damaged content.\n\nSuccessful parsing is only a first check. Python's default decoder accepts some extensions, including non-finite numbers, and keeps the last value when object names repeat. It does not establish that required fields exist or that the information is true. For an archive, also validate the expected fields, allowed values and duplicate policy.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "Python documentation — JSON command-line interface and decoder limitations",
+      "url": "https://docs.python.org/3/library/json.html",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "JSON representation, json.tool compatibility, duplicate-name and non-finite-number limitations. Parser success is explicitly distinguished from schema/content validation."
+  }
+}

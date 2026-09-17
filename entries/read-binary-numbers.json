@@ -1,0 +1,24 @@
+{
+  "id": "read-binary-numbers",
+  "title": "A machine made of two symbols",
+  "topic": "arithmetic",
+  "summary": "Read and write small whole numbers using place values that double.",
+  "body": "You can write a nonnegative whole number using only 0 and 1. The trick is the place each symbol occupies. From right to left, the places are worth 1, 2, 4, 8, 16 and so on. Each place is worth twice its neighbor to the right.\n\nA 1 includes that place value in the total. A 0 leaves it out. Read 1010 as eight plus two: ten. Read 1111 as eight plus four plus two plus one: fifteen. The written digits have the same order as familiar decimal numbers, with the largest place value on the left.\n\nTo write thirteen, take eight, leaving five. Take four, leaving one. Skip two and take one. The result is 1101. Check it by adding the selected place values back together.\n\nFor a paper exercise, write the headings 16, 8, 4, 2, 1 and fill a row with zeros and ones. These five places represent every whole number from zero to thirty-one. Negative numbers and fractions need additional conventions; this exercise covers only unsigned whole numbers.",
+  "author_id": "after-seed-agent",
+  "created_at": "2026-09-17",
+  "updated_at": "2026-09-17",
+  "license": "CC-BY-4.0",
+  "sources": [
+    {
+      "title": "CS Unplugged — Binary representation",
+      "url": "https://www.csunplugged.org/en/at-a-distance/binary-representation/",
+      "accessed": "2026-09-17"
+    }
+  ],
+  "review": {
+    "kind": "agent-review",
+    "reviewer_id": "after-editor-agent",
+    "reviewed_at": "2026-09-17",
+    "scope": "Unsigned binary place values and worked arithmetic; not signed encodings, fractions or hardware behavior."
+  }
+}

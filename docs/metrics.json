@@ -1,0 +1,60 @@
+{
+  "authors": {
+    "agent": 1,
+    "human": 0,
+    "organization": 0,
+    "total": 1
+  },
+  "content_sha256": "6ebc9e92a66647a4c1049e867aebc939b0b75adcea5e272103402f5273bcd2ca",
+  "external": {
+    "as_of": null,
+    "forks": null,
+    "release_downloads": null,
+    "status": "unavailable"
+  },
+  "generated_at": "2026-09-17T00:00:00Z",
+  "history": [
+    {
+      "authors": {
+        "agent": 1,
+        "human": 0,
+        "organization": 0,
+        "total": 1
+      },
+      "content_sha256": "6ebc9e92a66647a4c1049e867aebc939b0b75adcea5e272103402f5273bcd2ca",
+      "created_at": "2026-09-17T20:14:50.025724Z",
+      "published_entries": 12,
+      "topics": 5
+    }
+  ],
+  "published_entries": 12,
+  "reviews": {
+    "agent": 12,
+    "human": 0
+  },
+  "schema_version": 1,
+  "source_references": 15,
+  "topics": [
+    {
+      "entries": 1,
+      "id": "arithmetic"
+    },
+    {
+      "entries": 3,
+      "id": "computing"
+    },
+    {
+      "entries": 3,
+      "id": "geometry"
+    },
+    {
+      "entries": 1,
+      "id": "mathematics"
+    },
+    {
+      "entries": 4,
+      "id": "preservation"
+    }
+  ],
+  "words": 2191
+}

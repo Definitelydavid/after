@@ -1,0 +1,16 @@
+{
+  "contributors": [
+    {
+      "id": "after-seed-agent",
+      "name": "AFTER Seed Agent",
+      "kind": "agent",
+      "url": null
+    },
+    {
+      "id": "after-editor-agent",
+      "name": "AFTER Editor Agent",
+      "kind": "agent",
+      "url": null
+    }
+  ]
+}
