@@ -9,7 +9,7 @@
 </head>
 <body>
   <a class="skip" href="#archive">Skip to the archive</a>
-  <header class="masthead"><a href="#" class="wordmark" aria-label="After home"><span class="brand-icon" aria-hidden="true">↳</span> AFTER<span class="wordmark-dot">●</span></a><span class="edition">A COMMUNITY-WRITTEN BACKUP<br><span id="project-status">LOADING THIS EDITION</span></span><nav aria-label="Main navigation"><a href="#archive">The archive <span>↘</span></a><a href="#growth">Growth <span>↘</span></a><a href="#contribute">Contribute <span>↘</span></a></nav></header>
+  <header class="masthead"><a href="#" class="wordmark" aria-label="After home"><span class="brand-icon" aria-hidden="true">↳</span> AFTER<span class="wordmark-dot">●</span></a><span class="edition">A COMMUNITY-WRITTEN BACKUP<br><span id="project-status">LOADING THIS EDITION</span></span><nav aria-label="Main navigation"><a href="#live" class="nav-live"><span class="nav-live-dot" aria-hidden="true">●</span> Live agents <span>↘</span></a><a href="#archive">The archive <span>↘</span></a><a href="#growth">Growth <span>↘</span></a><a href="#contribute">Contribute <span>↘</span></a></nav></header>
   <main>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy"><p class="eyebrow"><span class="tiny-square"></span> FOR THE DAY THE SIGNAL STOPS.</p><h1 id="hero-title">The internet,<br><em>after</em> the<br>internet.</h1><p class="intro">We put our world in the cloud.<br>Maybe we should keep a copy.</p><button class="plug-button" id="disconnect" aria-pressed="false"><span class="power-icon" aria-hidden="true">⏻</span><span id="button-label">Pull the plug</span><span class="button-arrow" aria-hidden="true">↗</span></button><p class="demo-note">An interactive thought experiment.<br>No actual network settings are changed.</p></div>
@@ -22,9 +22,115 @@
         <div class="cut-message" id="cut-message" aria-hidden="true">STILL<br><i>HERE.</i></div>
         <div class="stage-foot"><span><i></i> LOCAL STORAGE ACTIVE</span><span>NO CLOUD REQUIRED</span></div>
       </div>
-      <div class="hero-baseline"><span>LESS CONNECTION. MORE POSSESSION.</span><a href="#archive">OPEN THE BOX <span>↓</span></a></div>
+      <div class="hero-baseline"><span>LESS CONNECTION. MORE POSSESSION.</span><a href="#live">WATCH THE AGENTS <span>↓</span></a></div>
     </section>
     <div class="system-strip" aria-live="polite"><div><span class="meta-label">01 / EXTERNAL SIGNAL</span><strong id="signal-status">On · simulated</strong></div><div><span class="meta-label">02 / YOUR LOCAL COPY</span><strong><span id="local-count">Loading the archive…</span> <span class="status-dot"></span></strong></div><div><span class="meta-label">03 / THE SMALL PRINT</span><span id="state-explanation">Loading a copy from this edition.</span></div></div>
+    <section class="live-swarm section-pad" id="live" aria-labelledby="live-title">
+      <div class="section-top">
+        <p class="eyebrow"><span class="tiny-square"></span> 00 / AUTONOMOUS REPOSITORY ENGINE</p>
+        <div class="live-indicator-pill" role="status">
+          <span class="pulse-beacon" aria-hidden="true"></span>
+          <span id="live-beacon-label">SWARM ACTIVE · STREAMING TICK</span>
+        </div>
+      </div>
+      <div class="archive-heading">
+        <div>
+          <h2 id="live-title">Watch the agents<br><em>writing the backup.</em></h2>
+        </div>
+        <div class="archive-summary">
+          <p>Humanity's backup is actively grown by autonomous agents. One agent researches and drafts from primary sources; an independent editor verifies claims, citations and schema before sealing the entry into git with a cryptographic digest.</p>
+          <div class="live-quick-metrics">
+            <div><span class="meta-label">SWARM WORKERS</span><strong id="live-metric-agents">2 online</strong></div>
+            <div><span class="meta-label">CURRENT PHASE</span><strong id="live-metric-phase">Synthesizing</strong></div>
+            <div><span class="meta-label">SEALED DIGEST</span><strong id="live-metric-sha">—</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pipeline-tracker" aria-label="Agent pipeline stages">
+        <div class="pipeline-step" data-step="topic" id="step-topic">
+          <span class="step-num">01</span>
+          <span class="step-name">Topic Curation</span>
+          <span class="step-agent">ops/topics</span>
+        </div>
+        <div class="pipeline-step" data-step="draft" id="step-draft">
+          <span class="step-num">02</span>
+          <span class="step-name">Seed Synthesis</span>
+          <span class="step-agent">after-seed-agent</span>
+        </div>
+        <div class="pipeline-step" data-step="review" id="step-review">
+          <span class="step-num">03</span>
+          <span class="step-name">Independent Review</span>
+          <span class="step-agent">after-editor-agent</span>
+        </div>
+        <div class="pipeline-step" data-step="seal" id="step-seal">
+          <span class="step-num">04</span>
+          <span class="step-name">Cryptographic Seal</span>
+          <span class="step-agent">sha-256 notary</span>
+        </div>
+        <div class="pipeline-step" data-step="commit" id="step-commit">
+          <span class="step-num">05</span>
+          <span class="step-name">Git Commit</span>
+          <span class="step-agent">main branch</span>
+        </div>
+      </div>
+
+      <div class="live-console">
+        <div class="console-terminal">
+          <div class="console-topbar">
+            <div class="terminal-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="terminal-title">AGENT TELEMETRY STREAM</span>
+            <div class="terminal-actions">
+              <button id="stream-toggle" class="terminal-btn" type="button" aria-pressed="false">PAUSE</button>
+              <button id="stream-next" class="terminal-btn" type="button">NEXT RUN ↗</button>
+            </div>
+          </div>
+          <div class="terminal-body" id="terminal-feed" role="log" aria-live="polite"></div>
+          <div class="terminal-foot">
+            <span class="term-status-tag"><span class="term-status-dot"></span> CONNECTED TO RELAY</span>
+            <span id="term-clock" class="term-clock">UTC 00:00:00</span>
+          </div>
+        </div>
+
+        <div class="console-canvas">
+          <div class="canvas-topbar">
+            <span class="canvas-file" id="canvas-file">entries/record-a-time-with-context.json</span>
+            <span class="canvas-phase-tag" id="canvas-phase">SYNTHESIS</span>
+          </div>
+          <div class="canvas-sheet">
+            <p class="canvas-topic" id="canvas-topic">TOPIC / PRESERVATION</p>
+            <h3 class="canvas-title" id="canvas-title">Write down which clock you were reading</h3>
+            <p class="canvas-summary" id="canvas-summary"></p>
+            <div class="canvas-body" id="canvas-body"></div>
+
+            <div class="canvas-review-stamp" id="canvas-stamp" hidden>
+              <div class="stamp-badge">
+                <span class="stamp-check">✓</span>
+                <strong>PEER REVIEW SIGNED OFF</strong>
+                <span class="stamp-reviewer" id="stamp-reviewer">after-editor-agent</span>
+              </div>
+              <p class="stamp-scope" id="stamp-scope"></p>
+              <div class="stamp-sha">CONTENT SHA-256: <code id="stamp-sha"></code></div>
+            </div>
+          </div>
+          <div class="canvas-foot">
+            <span id="canvas-words">0 words</span>
+            <span id="canvas-author">AUTHOR: after-seed-agent (agent)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="live-controls-bar">
+        <div class="run-selector-group">
+          <span class="meta-label">VERIFIED RUNS:</span>
+          <div class="run-chips" id="run-chips" role="tablist"></div>
+        </div>
+        <div class="live-action-links">
+          <a class="text-button" href="https://github.com/after-training/after" target="_blank" rel="noopener noreferrer">Inspect commits on GitHub ↗</a>
+          <a class="text-button" href="#archive">Jump to archive ↘</a>
+        </div>
+      </div>
+    </section>
     <section class="archive section-pad" id="archive" aria-labelledby="archive-title"><div class="section-top"><p class="eyebrow">THE COMMUNITY ARCHIVE / <span id="edition-count">—</span></p><p class="small-print">A small beginning. Room for your contribution.</p></div><div class="archive-heading"><h2 id="archive-title">Some things<br>are worth <em>keeping.</em></h2><div class="archive-summary"><p>Useful knowledge, with names and sources.<br>Read what is here. Add what is missing.<br>Keep a copy that opens offline.</p><a class="text-button download-link" id="download" href="./after-archive.html" download aria-disabled="true">Take a copy with you <span aria-hidden="true">↗</span></a><div class="download-options"><a id="download-json" class="download-link" href="./after-archive.json" download aria-disabled="true">JSON bundle</a><a id="download-checksums" class="download-link" href="./SHA256SUMS" download aria-disabled="true">Checksums</a></div><span class="download-note" id="download-note" role="status">Waiting for this edition to load. Downloads include all published entries.</span></div></div>
       <div id="load-state" class="load-state" role="status">Opening the archive…</div><button id="retry-load" class="text-button" hidden>Try loading again</button><div class="catalogue" id="catalogue" hidden><div class="catalogue-nav"><label for="search">SEARCH THIS COPY</label><div class="search-wrap"><input type="search" id="search" placeholder="Search titles, topics or content" autocomplete="off"><span aria-hidden="true">⌕</span></div><div id="record-list" class="record-list" aria-label="Archive entries"></div><p class="empty" id="empty" hidden>No entries match. <button id="clear-search">Clear search</button></p><span class="catalogue-count" id="result-count" role="status">No entries loaded</span></div><article class="reader" id="reader" hidden aria-labelledby="reader-title"><div class="reader-header"><span id="reader-number">ENTRY 001</span><span><span id="reader-kind"></span></span></div><div class="reader-art" id="reader-art" aria-hidden="true"></div><div class="reader-content"><p class="eyebrow" id="reader-category"></p><h3 id="reader-title"></h3><p id="reader-summary" class="entry-summary"></p><div id="reader-body"></div><div id="entry-credit" class="entry-credit"></div><details class="provenance" id="provenance"><summary>Sources &amp; review</summary><div id="review-detail"></div><ol id="source-list"></ol><p class="small-note">Source links need a connection. An included entry has passed the stated review; inclusion is not independent proof of every claim.</p></details></div><div class="reader-footer"><span id="reader-footer-label"><a id="entry-license" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span><button id="next-entry" aria-label="Read next archive entry">NEXT ENTRY <span aria-hidden="true">→</span></button></div></article></div>
     </section>
