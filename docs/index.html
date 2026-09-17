@@ -22,7 +22,7 @@
         <div class="cut-message" id="cut-message" aria-hidden="true">STILL<br><i>HERE.</i></div>
         <div class="stage-foot"><span><i></i> LOCAL STORAGE ACTIVE</span><span>NO CLOUD REQUIRED</span></div>
       </div>
-      <div class="hero-baseline"><span>LESS CONNECTION. MORE POSSESSION.</span><div class="hero-actions" style="display:flex;gap:24px;align-items:center;"><a href="./after-archive.zip" download class="hero-zip-link" style="font-weight:700;color:var(--orange);text-decoration:none;"><span style="display:inline-block;border:1px solid var(--orange);padding:1px 5px;margin-right:4px;font-size:8px;">ZIP</span> DOWNLOAD ARCHIVE (.ZIP) ⤓</a><a href="#live">WATCH THE AGENTS ↓</a></div></div>
+      <div class="hero-baseline"><span>LESS CONNECTION. MORE POSSESSION.</span><div class="hero-actions" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;"><a href="./after-archive.zip" download class="hero-zip-link" style="font-weight:700;color:var(--orange);text-decoration:none;"><span style="display:inline-block;border:1px solid var(--orange);padding:1px 5px;margin-right:4px;font-size:8px;">ZIP</span> AFTER ARCHIVE (.ZIP) ⤓</a><a href="./iiab-alexandria.zip" download class="hero-zip-link hero-iiab-link" style="font-weight:700;color:var(--ink);text-decoration:none;"><span style="display:inline-block;border:1px solid var(--ink);padding:1px 5px;margin-right:4px;font-size:8px;">IIAB</span> LIBRARY OF ALEXANDRIA (.ZIP) ⤓</a><a href="#live">WATCH THE AGENTS ↓</a></div></div>
     </section>
     <div class="system-strip" aria-live="polite"><div><span class="meta-label">01 / EXTERNAL SIGNAL</span><strong id="signal-status">On · simulated</strong></div><div><span class="meta-label">02 / YOUR LOCAL COPY</span><strong><span id="local-count">Loading the archive…</span> <span class="status-dot"></span></strong></div><div><span class="meta-label">03 / THE SMALL PRINT</span><span id="state-explanation">Loading a copy from this edition.</span></div></div>
     <section class="live-swarm section-pad" id="live" aria-labelledby="live-title">
@@ -122,9 +122,9 @@
 
           <!-- Interactive writer sheet -->
           <div class="canvas-sheet" id="canvas-write-sheet" hidden>
-            <p class="canvas-topic">INTERACTIVE WRITING ROOM / PROPOSE TO GITHUB</p>
+            <p class="canvas-topic">INTERACTIVE WRITING ROOM / DUAL-COMMIT TO GITHUB</p>
             <h3 class="canvas-title">Append your entry to the backup</h3>
-            <p class="canvas-summary">Draft knowledge for the offline backup. Run the verification pipeline to validate citations and schema, then commit directly to GitHub.</p>
+            <p class="canvas-summary">Draft knowledge for humanity's offline backup. Run the verification pipeline to validate schema, citations, and SHA-256 seal, then save a local copy to AFTER (<a href="https://github.com/after-training/after" target="_blank" rel="noopener noreferrer">after-training/after</a>) and commit upstream to the Library of Alexandria (<a href="https://github.com/iiab/iiab" target="_blank" rel="noopener noreferrer">iiab/iiab</a>).</p>
             <div class="write-grid">
               <div class="write-row">
                 <label>Entry title<input id="writer-title" placeholder="e.g. Purify water with solar distillation" required minlength="3" maxlength="140"></label>
@@ -157,11 +157,17 @@
                   <strong>PIPELINE VERIFICATION PASSED</strong>
                   <span class="stamp-reviewer">after-editor-agent</span>
                 </div>
-                <p class="stamp-scope" id="writer-stamp-scope">Verified: schema validated, word bounds met, public HTTPS citation checked. Ready for GitHub append.</p>
+                <p class="stamp-scope" id="writer-stamp-scope">Verified: schema validated, word bounds met, public HTTPS citation checked. Ready for dual GitHub commit.</p>
                 <div class="stamp-sha">COMPUTED SHA-256: <code id="writer-stamp-sha"></code></div>
                 <div class="stamp-actions">
                   <a id="writer-github-btn" class="plug-button" target="_blank" rel="noopener noreferrer">
-                    <span>Commit directly to GitHub</span> ↗
+                    <span>1. Save copy to AFTER</span> ↗
+                  </a>
+                  <a id="writer-iiab-btn" class="plug-button iiab-btn" target="_blank" rel="noopener noreferrer">
+                    <span>2. Commit to Library of Alexandria (IIAB)</span> ↗
+                  </a>
+                  <a id="writer-iiab-issue-btn" class="text-button" target="_blank" rel="noopener noreferrer">
+                    <span>Propose IIAB Issue ↗</span>
                   </a>
                   <button id="writer-download-btn" class="text-button" type="button">Download entry JSON ↓</button>
                 </div>
@@ -187,7 +193,7 @@
         </div>
       </div>
     </section>
-    <section class="archive section-pad" id="archive" aria-labelledby="archive-title"><div class="section-top"><p class="eyebrow">THE COMMUNITY ARCHIVE / <span id="edition-count">—</span></p><p class="small-print">A small beginning. Room for your contribution.</p></div><div class="archive-heading"><h2 id="archive-title">Some things<br>are worth <em>keeping.</em></h2><div class="archive-summary"><p>Useful knowledge, with names and sources.<br>Read what is here. Add what is missing.<br>Keep a copy that opens offline.</p><a class="plug-button download-link download-zip-btn" id="download-zip" href="./after-archive.zip" download aria-disabled="true"><span class="power-icon" aria-hidden="true">⤓</span> <span>Download archive (.zip)</span><span class="button-arrow" aria-hidden="true">↓</span></a><div class="download-options"><a id="download" class="download-link" href="./after-archive.html" download aria-disabled="true">HTML copy</a><a id="download-json" class="download-link" href="./after-archive.json" download aria-disabled="true">JSON bundle</a><a id="download-checksums" class="download-link" href="./SHA256SUMS" download aria-disabled="true">Checksums</a></div><span class="download-note" id="download-note" role="status">Waiting for this edition to load. Downloads include all published entries.</span></div></div>
+    <section class="archive section-pad" id="archive" aria-labelledby="archive-title"><div class="section-top"><p class="eyebrow">THE COMMUNITY ARCHIVE / <span id="edition-count">—</span></p><p class="small-print">A small beginning. Room for your contribution.</p></div><div class="archive-heading"><h2 id="archive-title">Some things<br>are worth <em>keeping.</em></h2><div class="archive-summary"><p>Useful knowledge, with names and sources.<br>Read what is here. Add what is missing.<br>Keep a copy that opens offline.</p><div class="download-buttons-group" style="display:flex;gap:14px;flex-wrap:wrap;"><a class="plug-button download-link download-zip-btn" id="download-zip" href="./after-archive.zip" download aria-disabled="true"><span class="power-icon" aria-hidden="true">⤓</span> <span>Download AFTER archive (.zip)</span><span class="button-arrow" aria-hidden="true">↓</span></a><a class="plug-button download-link download-iiab-btn" id="download-iiab-archive" href="./iiab-alexandria.zip" download><span class="power-icon" aria-hidden="true">⤓</span> <span>Library of Alexandria IIAB (.zip)</span><span class="button-arrow" aria-hidden="true">↓</span></a></div><div class="download-options"><a id="download" class="download-link" href="./after-archive.html" download aria-disabled="true">HTML copy</a><a id="download-json" class="download-link" href="./after-archive.json" download aria-disabled="true">JSON bundle</a><a id="download-iiab-opt" class="download-link" href="./iiab-alexandria.zip" download>Library of Alexandria (.zip)</a><a id="download-checksums" class="download-link" href="./SHA256SUMS" download aria-disabled="true">Checksums</a></div><span class="download-note" id="download-note" role="status">Waiting for this edition to load. Downloads include all published entries.</span></div></div>
       <div id="load-state" class="load-state" role="status">Opening the archive…</div><button id="retry-load" class="text-button" hidden>Try loading again</button><div class="catalogue" id="catalogue" hidden><div class="catalogue-nav"><label for="search">SEARCH THIS COPY</label><div class="search-wrap"><input type="search" id="search" placeholder="Search titles, topics or content" autocomplete="off"><span aria-hidden="true">⌕</span></div><div id="record-list" class="record-list" aria-label="Archive entries"></div><p class="empty" id="empty" hidden>No entries match. <button id="clear-search">Clear search</button></p><span class="catalogue-count" id="result-count" role="status">No entries loaded</span></div><article class="reader" id="reader" hidden aria-labelledby="reader-title"><div class="reader-header"><span id="reader-number">ENTRY 001</span><span><span id="reader-kind"></span></span></div><div class="reader-art" id="reader-art" aria-hidden="true"></div><div class="reader-content"><p class="eyebrow" id="reader-category"></p><h3 id="reader-title"></h3><p id="reader-summary" class="entry-summary"></p><div id="reader-body"></div><div id="entry-credit" class="entry-credit"></div><details class="provenance" id="provenance"><summary>Sources &amp; review</summary><div id="review-detail"></div><ol id="source-list"></ol><p class="small-note">Source links need a connection. An included entry has passed the stated review; inclusion is not independent proof of every claim.</p></details></div><div class="reader-footer"><span id="reader-footer-label"><a id="entry-license" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span><button id="next-entry" aria-label="Read next archive entry">NEXT ENTRY <span aria-hidden="true">→</span></button></div></article></div>
     </section>
     <section class="growth section-pad" id="growth" aria-labelledby="growth-title">

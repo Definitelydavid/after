@@ -303,7 +303,11 @@ def build(root):
     for name in [*outputs, "SHA256SUMS"]:
         require(not (docs / name).is_symlink(), f"docs/{name} cannot be a symlink")
     for name, data in outputs.items(): (docs / name).write_bytes(data)
-    (docs / "SHA256SUMS").write_text("".join(f"{hashlib.sha256(data).hexdigest()}  {name}\n" for name, data in sorted(outputs.items())), encoding="utf-8")
+    checksums = [f"{hashlib.sha256(data).hexdigest()}  {name}" for name, data in sorted(outputs.items())]
+    if (docs / "iiab-alexandria.zip").exists():
+        iiab_hash = hashlib.sha256((docs / "iiab-alexandria.zip").read_bytes()).hexdigest()
+        checksums.append(f"{iiab_hash}  iiab-alexandria.zip")
+    (docs / "SHA256SUMS").write_text("\n".join(checksums) + "\n", encoding="utf-8")
     return catalog, metrics
 
 

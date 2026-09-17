@@ -497,6 +497,8 @@ function initLiveSwarm() {
   const writerStampScope = $('writer-stamp-scope');
   const writerStampSha = $('writer-stamp-sha');
   const writerGithubBtn = $('writer-github-btn');
+  const writerIiabBtn = $('writer-iiab-btn');
+  const writerIiabIssueBtn = $('writer-iiab-issue-btn');
   const writerDownloadBtn = $('writer-download-btn');
 
   let currentProposalObj = null;
@@ -587,15 +589,31 @@ function initLiveSwarm() {
       addTermLine('badge-archivist', 'NOTARY', `Computed SHA-256 digest: <code class="term-highlight">${digest}</code>`);
 
       setPipelineStep('commit');
-      addTermLine('badge-archivist', 'GIT', `Payload ready for direct GitHub web commit to <strong class="term-highlight">after-training/after</strong>.`);
+      addTermLine('badge-archivist', 'GIT', `Dual-commit ready: Save local copy to <strong class="term-highlight">after-training/after</strong>.`);
+      addTermLine('badge-archivist', 'ALEXANDRIA', `Upstream commit formatted for Library of Alexandria (<strong class="term-highlight">iiab/iiab</strong>).`);
 
       writerStamp.hidden = false;
       writerStampSha.textContent = digest;
-      writerStampScope.textContent = `Verified: schema validated (${words} words), public HTTPS citation checked. Ready to append to repository.`;
+      writerStampScope.textContent = `Verified: schema validated (${words} words), public HTTPS citation checked. Ready to save to AFTER and commit to Library of Alexandria.`;
       
-      const githubUrl = `https://github.com/after-training/after/new/main?filename=entries/${encodeURIComponent(entryId)}.json&value=${encodeURIComponent(jsonText)}&message=${encodeURIComponent(`Add entry: ${title}`)}`;
-      writerGithubBtn.href = githubUrl;
-      writerStatus.textContent = 'Pipeline passed! Click “Commit directly to GitHub” to append the file.';
+      // 1. Save copy to AFTER Archive
+      const afterGithubUrl = `https://github.com/after-training/after/new/main?filename=entries/${encodeURIComponent(entryId)}.json&value=${encodeURIComponent(jsonText)}&message=${encodeURIComponent(`Add entry: ${title}`)}`;
+      writerGithubBtn.href = afterGithubUrl;
+
+      // 2. Commit upstream to Library of Alexandria (IIAB)
+      const iiabCommitUrl = `https://github.com/iiab/iiab/new/master?filename=roles/knowledge/files/${encodeURIComponent(entryId)}.json&value=${encodeURIComponent(jsonText)}&message=${encodeURIComponent(`Add Library of Alexandria knowledge module: ${title}`)}`;
+      if (writerIiabBtn) {
+        writerIiabBtn.href = iiabCommitUrl;
+      }
+
+      // 3. Propose IIAB Issue
+      const issueBody = `### Library of Alexandria Knowledge Module: ${title}\n\n**Topic:** ${topic}\n**Summary:** ${summary}\n**Primary Source:** [${sourceTitle}](${sourceURL})\n**Author:** ${authorName} (${authorKind})\n**License:** CC-BY-4.0\n**SHA-256 Digest:** \`${digest}\`\n\n#### Module Payload:\n\`\`\`json\n${jsonText.trim()}\n\`\`\`\n\n---\n*Verified and sealed via AFTER Autonomous Pipeline on https://after.training*`;
+      const iiabIssueUrl = `https://github.com/iiab/iiab/issues/new?title=${encodeURIComponent(`[Content] ${title}`)}&body=${encodeURIComponent(issueBody)}`;
+      if (writerIiabIssueBtn) {
+        writerIiabIssueBtn.href = iiabIssueUrl;
+      }
+
+      writerStatus.textContent = 'Pipeline passed! Save a copy to AFTER, or commit directly upstream to Library of Alexandria.';
       writerStatus.style.color = '#4c1';
       writerRunBtn.disabled = false;
       writerStamp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
