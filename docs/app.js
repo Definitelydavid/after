@@ -270,15 +270,35 @@ function initLiveSwarm() {
   const dashHashDisplay = $('dash-hash-display');
   const dashCommitPill = $('dash-commit-pill');
   const dashIiabTag = $('dash-iiab-tag');
+  const liveSection = $('live');
 
   if (!terminalFeed || !canvasBody) return;
 
   let activeRunIndex = 0;
   let isPaused = false;
+  let isSectionVisible = true;
+  let isDocVisible = !document.hidden;
   let runTimeout = null;
   let typeInterval = null;
+  let runCount = 0;
+  const MAX_AUTORUNS = 6; // 2 complete loops of the 3 runs before power-saving idle standby
+
+  const updatePowerState = () => {
+    const shouldRun = !isPaused && isSectionVisible && isDocVisible;
+    if (liveSection) {
+      liveSection.classList.toggle('is-suspended', !shouldRun);
+    }
+    if (!shouldRun) {
+      clearTimeout(runTimeout);
+      clearInterval(typeInterval);
+      runTimeout = null;
+      typeInterval = null;
+    }
+    return shouldRun;
+  };
 
   const updateClock = () => {
+    if (!isSectionVisible || document.hidden) return;
     const now = new Date();
     const pad = n => String(n).padStart(2, '0');
     termClock.textContent = `UTC ${pad(now.getUTCHours())}:${pad(now.getUTCMinutes())}:${pad(now.getUTCSeconds())}`;
@@ -293,6 +313,12 @@ function initLiveSwarm() {
     chip.setAttribute('aria-selected', String(i === 0));
     chip.textContent = `${run.tick} ${run.id}`;
     chip.addEventListener('click', () => {
+      runCount = 0;
+      isPaused = false;
+      if (streamToggle) {
+        streamToggle.setAttribute('aria-pressed', 'false');
+        streamToggle.textContent = 'PAUSE';
+      }
       jumpToRun(i);
     });
     return chip;
@@ -441,16 +467,18 @@ function initLiveSwarm() {
       let totalWords = 0;
 
       typeInterval = setInterval(() => {
-        if (isPaused) return;
+        if (!updatePowerState()) return;
 
         if (pIdx < paragraphs.length) {
           const words = wordsPerPara[pIdx];
-          if (wordIdx < words.length) {
+          const batchSize = Math.min(2, words.length - wordIdx);
+          if (batchSize > 0) {
             cursor.remove();
-            pElements[pIdx].append(words[wordIdx] + ' ');
+            const chunk = words.slice(wordIdx, wordIdx + batchSize).join(' ') + ' ';
+            pElements[pIdx].append(chunk);
             pElements[pIdx].append(cursor);
-            wordIdx++;
-            totalWords++;
+            wordIdx += batchSize;
+            totalWords += batchSize;
             canvasWords.textContent = `${totalWords} words written`;
             if (synthWordsVal) synthWordsVal.textContent = String(totalWords);
             if (synthMeterBar) {
@@ -470,6 +498,7 @@ function initLiveSwarm() {
           }
         } else {
           clearInterval(typeInterval);
+          typeInterval = null;
           cursor.remove();
           canvasWords.textContent = `${totalWords} words (valid bounds 150–400)`;
           if (synthStatus) {
@@ -479,7 +508,7 @@ function initLiveSwarm() {
           addTermLine('badge-seed', 'SEED-AGENT', `Draft body synthesized (${totalWords} words). Dispatched to private review staging.`);
 
           runTimeout = setTimeout(() => {
-            if (isPaused) return;
+            if (!updatePowerState()) return;
             setPipelineStep('review');
             metricPhase.textContent = 'Independent Review';
             canvasPhase.textContent = '03 / PEER REVIEW';
@@ -490,19 +519,19 @@ function initLiveSwarm() {
             if (chkSchema) { chkSchema.classList.add('is-checked'); if (iconSchema) iconSchema.textContent = '✓'; }
             setTimeout(() => {
               if (chkSource) { chkSource.classList.add('is-checked'); if (iconSource) iconSource.textContent = '✓'; }
-            }, 300);
+            }, 250);
             setTimeout(() => {
               if (chkBounds) { chkBounds.classList.add('is-checked'); if (iconBounds) iconBounds.textContent = '✓'; }
-            }, 600);
+            }, 500);
             setTimeout(() => {
               if (chkTemporal) { chkTemporal.classList.add('is-checked'); if (iconTemporal) iconTemporal.textContent = '✓'; }
-            }, 900);
+            }, 750);
 
             addTermLine('badge-editor', 'EDITOR-AGENT', `Independent session verifying claims against cited sources...`);
             addTermLine('badge-editor', 'VALIDATION', `Checks: schema ✓, non-future dates ✓, zero fabricated human identities ✓.`);
 
             runTimeout = setTimeout(() => {
-              if (isPaused) return;
+              if (!updatePowerState()) return;
               canvasStamp.hidden = false;
               stampReviewer.textContent = run.reviewer_id;
               stampScope.textContent = run.review_scope;
@@ -529,7 +558,7 @@ function initLiveSwarm() {
               addTermLine('badge-archivist', 'NOTARY', `Computed content SHA-256: <code class="term-highlight">${run.sha256.slice(0, 16)}...</code>`);
 
               runTimeout = setTimeout(() => {
-                if (isPaused) return;
+                if (!updatePowerState()) return;
                 setPipelineStep('commit');
                 metricPhase.textContent = 'Committed to git';
                 canvasPhase.textContent = '05 / GIT APPENDED';
@@ -546,20 +575,35 @@ function initLiveSwarm() {
                 addTermLine('badge-archivist', 'STATE', `Snapshot height advanced. Archive immutable and tamper-evident.`);
 
                 runTimeout = setTimeout(() => {
-                  if (isPaused) return;
+                  if (!updatePowerState()) return;
+                  runCount++;
+                  if (runCount >= MAX_AUTORUNS) {
+                    isPaused = true;
+                    if (streamToggle) {
+                      streamToggle.setAttribute('aria-pressed', 'true');
+                      streamToggle.textContent = 'RESUME';
+                    }
+                    beaconLabel.textContent = 'ECO STANDBY · STREAM SLEEP';
+                    addTermLine('badge-archivist', 'POWER', 'Swarm entered low-power idle standby. Click RESUME or select a run to wake.');
+                    updatePowerState();
+                    return;
+                  }
                   playRun((activeRunIndex + 1) % LIVE_RUNS.length);
-                }, 8000);
-              }, 2200);
-            }, 2500);
-          }, 1400);
+                }, 7000);
+              }, 2000);
+            }, 2200);
+          }, 1200);
         }
-      }, 45);
+      }, 70);
     }, 1200);
   }
 
   function jumpToRun(index) {
+    runCount = 0;
     clearTimeout(runTimeout);
     clearInterval(typeInterval);
+    runTimeout = null;
+    typeInterval = null;
     playRun(index);
   }
 
@@ -567,14 +611,27 @@ function initLiveSwarm() {
     isPaused = !isPaused;
     streamToggle.setAttribute('aria-pressed', String(isPaused));
     streamToggle.textContent = isPaused ? 'RESUME' : 'PAUSE';
+    runCount = 0;
+    updatePowerState();
     if (!isPaused) {
       addTermLine('badge-archivist', 'STREAM', 'Stream resumed by operator.');
+      playRun(activeRunIndex);
     } else {
+      clearTimeout(runTimeout);
+      clearInterval(typeInterval);
+      runTimeout = null;
+      typeInterval = null;
       addTermLine('badge-archivist', 'STREAM', 'Stream paused by operator.');
     }
   });
 
   streamNext.addEventListener('click', () => {
+    runCount = 0;
+    isPaused = false;
+    if (streamToggle) {
+      streamToggle.setAttribute('aria-pressed', 'false');
+      streamToggle.textContent = 'PAUSE';
+    }
     jumpToRun((activeRunIndex + 1) % LIVE_RUNS.length);
   });
 
@@ -811,7 +868,31 @@ function initLiveSwarm() {
     });
   }
 
-  playRun(0);
+  // Eco power management: Only stream when section is visible in viewport and tab is focused
+  if ('IntersectionObserver' in window && liveSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const prev = isSectionVisible;
+        isSectionVisible = entry.isIntersecting;
+        updatePowerState();
+        if (!prev && isSectionVisible && !isPaused && !typeInterval && !runTimeout) {
+          playRun(activeRunIndex);
+        }
+      });
+    }, { threshold: 0.15 });
+    observer.observe(liveSection);
+  } else {
+    playRun(0);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    const prev = isDocVisible;
+    isDocVisible = !document.hidden;
+    updatePowerState();
+    if (!prev && isDocVisible && isSectionVisible && !isPaused && !typeInterval && !runTimeout) {
+      playRun(activeRunIndex);
+    }
+  });
 }
 
 initLiveSwarm();
