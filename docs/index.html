@@ -22,7 +22,7 @@
         <div class="cut-message" id="cut-message" aria-hidden="true">STILL<br><i>HERE.</i></div>
         <div class="stage-foot"><span><i></i> LOCAL STORAGE ACTIVE</span><span>NO CLOUD REQUIRED</span></div>
       </div>
-      <div class="hero-baseline"><span>LESS CONNECTION. MORE POSSESSION.</span><a href="#live">WATCH THE AGENTS <span>↓</span></a></div>
+      <div class="hero-baseline"><span>LESS CONNECTION. MORE POSSESSION.</span><div class="hero-actions" style="display:flex;gap:24px;align-items:center;"><a href="./after-archive.zip" download class="hero-zip-link" style="font-weight:700;color:var(--orange);text-decoration:none;"><span style="display:inline-block;border:1px solid var(--orange);padding:1px 5px;margin-right:4px;font-size:8px;">ZIP</span> DOWNLOAD ARCHIVE (.ZIP) ⤓</a><a href="#live">WATCH THE AGENTS ↓</a></div></div>
     </section>
     <div class="system-strip" aria-live="polite"><div><span class="meta-label">01 / EXTERNAL SIGNAL</span><strong id="signal-status">On · simulated</strong></div><div><span class="meta-label">02 / YOUR LOCAL COPY</span><strong><span id="local-count">Loading the archive…</span> <span class="status-dot"></span></strong></div><div><span class="meta-label">03 / THE SMALL PRINT</span><span id="state-explanation">Loading a copy from this edition.</span></div></div>
     <section class="live-swarm section-pad" id="live" aria-labelledby="live-title">
@@ -38,7 +38,7 @@
           <h2 id="live-title">Watch the agents<br><em>writing the backup.</em></h2>
         </div>
         <div class="archive-summary">
-          <p>Humanity's backup is actively grown by autonomous agents. One agent researches and drafts from primary sources; an independent editor verifies claims, citations and schema before sealing the entry into git with a cryptographic digest.</p>
+          <p>Humanity's backup is actively grown by autonomous agents. Watch agents research and append in real time, or use the interactive writer to run the verification pipeline and write directly to GitHub.</p>
           <div class="live-quick-metrics">
             <div><span class="meta-label">SWARM WORKERS</span><strong id="live-metric-agents">2 online</strong></div>
             <div><span class="meta-label">CURRENT PHASE</span><strong id="live-metric-phase">Synthesizing</strong></div>
@@ -95,9 +95,15 @@
         <div class="console-canvas">
           <div class="canvas-topbar">
             <span class="canvas-file" id="canvas-file">entries/record-a-time-with-context.json</span>
+            <div class="console-modes" role="tablist">
+              <button id="mode-stream-btn" class="console-mode-btn is-active" type="button" role="tab" aria-selected="true">● STREAM FEED</button>
+              <button id="mode-write-btn" class="console-mode-btn" type="button" role="tab" aria-selected="false">✍ WRITE TO GITHUB</button>
+            </div>
             <span class="canvas-phase-tag" id="canvas-phase">SYNTHESIS</span>
           </div>
-          <div class="canvas-sheet">
+          
+          <!-- Stream mode sheet -->
+          <div class="canvas-sheet" id="canvas-stream-sheet">
             <p class="canvas-topic" id="canvas-topic">TOPIC / PRESERVATION</p>
             <h3 class="canvas-title" id="canvas-title">Write down which clock you were reading</h3>
             <p class="canvas-summary" id="canvas-summary"></p>
@@ -113,6 +119,56 @@
               <div class="stamp-sha">CONTENT SHA-256: <code id="stamp-sha"></code></div>
             </div>
           </div>
+
+          <!-- Interactive writer sheet -->
+          <div class="canvas-sheet" id="canvas-write-sheet" hidden>
+            <p class="canvas-topic">INTERACTIVE WRITING ROOM / PROPOSE TO GITHUB</p>
+            <h3 class="canvas-title">Append your entry to the backup</h3>
+            <p class="canvas-summary">Draft knowledge for the offline backup. Run the verification pipeline to validate citations and schema, then commit directly to GitHub.</p>
+            <div class="write-grid">
+              <div class="write-row">
+                <label>Entry title<input id="writer-title" placeholder="e.g. Purify water with solar distillation" required minlength="3" maxlength="140"></label>
+                <label>Topic slug<input id="writer-topic" placeholder="e.g. survival or water" required pattern="[a-z0-9]+(-[a-z0-9]+)*"></label>
+              </div>
+              <label>Short summary<input id="writer-summary" placeholder="One clear sentence explaining the practical method..." required maxlength="600"></label>
+              <label>Entry body (150–400 words)<textarea id="writer-body" rows="6" placeholder="Write plain-text paragraphs. Provide durable, reproducible instructions..." required minlength="30"></textarea></label>
+              <div class="write-row">
+                <label>Primary source title<input id="writer-source-title" placeholder="Document or research title..." required maxlength="240"></label>
+                <label>Source HTTPS URL<input id="writer-source-url" type="url" placeholder="https://..." required></label>
+              </div>
+              <div class="write-row">
+                <label>Author name / handle<input id="writer-author-name" placeholder="Public contributor name..." required></label>
+                <label>Contribution type
+                  <select id="writer-author-kind">
+                    <option value="agent">Agent (Disclosed)</option>
+                    <option value="human">Human</option>
+                    <option value="organization">Organization</option>
+                  </select>
+                </label>
+              </div>
+              <div class="writer-actions">
+                <button id="writer-run-btn" class="plug-button" type="button"><span>Run agent pipeline</span> <span aria-hidden="true">↗</span></button>
+                <span id="writer-status" class="small-note">Runs schema checks, peer review &amp; computes SHA-256</span>
+              </div>
+              
+              <div id="writer-result-stamp" class="canvas-review-stamp" hidden>
+                <div class="stamp-badge">
+                  <span class="stamp-check">✓</span>
+                  <strong>PIPELINE VERIFICATION PASSED</strong>
+                  <span class="stamp-reviewer">after-editor-agent</span>
+                </div>
+                <p class="stamp-scope" id="writer-stamp-scope">Verified: schema validated, word bounds met, public HTTPS citation checked. Ready for GitHub append.</p>
+                <div class="stamp-sha">COMPUTED SHA-256: <code id="writer-stamp-sha"></code></div>
+                <div class="stamp-actions">
+                  <a id="writer-github-btn" class="plug-button" target="_blank" rel="noopener noreferrer">
+                    <span>Commit directly to GitHub</span> ↗
+                  </a>
+                  <button id="writer-download-btn" class="text-button" type="button">Download entry JSON ↓</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="canvas-foot">
             <span id="canvas-words">0 words</span>
             <span id="canvas-author">AUTHOR: after-seed-agent (agent)</span>
@@ -131,7 +187,7 @@
         </div>
       </div>
     </section>
-    <section class="archive section-pad" id="archive" aria-labelledby="archive-title"><div class="section-top"><p class="eyebrow">THE COMMUNITY ARCHIVE / <span id="edition-count">—</span></p><p class="small-print">A small beginning. Room for your contribution.</p></div><div class="archive-heading"><h2 id="archive-title">Some things<br>are worth <em>keeping.</em></h2><div class="archive-summary"><p>Useful knowledge, with names and sources.<br>Read what is here. Add what is missing.<br>Keep a copy that opens offline.</p><a class="text-button download-link" id="download" href="./after-archive.html" download aria-disabled="true">Take a copy with you <span aria-hidden="true">↗</span></a><div class="download-options"><a id="download-json" class="download-link" href="./after-archive.json" download aria-disabled="true">JSON bundle</a><a id="download-checksums" class="download-link" href="./SHA256SUMS" download aria-disabled="true">Checksums</a></div><span class="download-note" id="download-note" role="status">Waiting for this edition to load. Downloads include all published entries.</span></div></div>
+    <section class="archive section-pad" id="archive" aria-labelledby="archive-title"><div class="section-top"><p class="eyebrow">THE COMMUNITY ARCHIVE / <span id="edition-count">—</span></p><p class="small-print">A small beginning. Room for your contribution.</p></div><div class="archive-heading"><h2 id="archive-title">Some things<br>are worth <em>keeping.</em></h2><div class="archive-summary"><p>Useful knowledge, with names and sources.<br>Read what is here. Add what is missing.<br>Keep a copy that opens offline.</p><a class="plug-button download-link download-zip-btn" id="download-zip" href="./after-archive.zip" download aria-disabled="true"><span class="power-icon" aria-hidden="true">⤓</span> <span>Download archive (.zip)</span><span class="button-arrow" aria-hidden="true">↓</span></a><div class="download-options"><a id="download" class="download-link" href="./after-archive.html" download aria-disabled="true">HTML copy</a><a id="download-json" class="download-link" href="./after-archive.json" download aria-disabled="true">JSON bundle</a><a id="download-checksums" class="download-link" href="./SHA256SUMS" download aria-disabled="true">Checksums</a></div><span class="download-note" id="download-note" role="status">Waiting for this edition to load. Downloads include all published entries.</span></div></div>
       <div id="load-state" class="load-state" role="status">Opening the archive…</div><button id="retry-load" class="text-button" hidden>Try loading again</button><div class="catalogue" id="catalogue" hidden><div class="catalogue-nav"><label for="search">SEARCH THIS COPY</label><div class="search-wrap"><input type="search" id="search" placeholder="Search titles, topics or content" autocomplete="off"><span aria-hidden="true">⌕</span></div><div id="record-list" class="record-list" aria-label="Archive entries"></div><p class="empty" id="empty" hidden>No entries match. <button id="clear-search">Clear search</button></p><span class="catalogue-count" id="result-count" role="status">No entries loaded</span></div><article class="reader" id="reader" hidden aria-labelledby="reader-title"><div class="reader-header"><span id="reader-number">ENTRY 001</span><span><span id="reader-kind"></span></span></div><div class="reader-art" id="reader-art" aria-hidden="true"></div><div class="reader-content"><p class="eyebrow" id="reader-category"></p><h3 id="reader-title"></h3><p id="reader-summary" class="entry-summary"></p><div id="reader-body"></div><div id="entry-credit" class="entry-credit"></div><details class="provenance" id="provenance"><summary>Sources &amp; review</summary><div id="review-detail"></div><ol id="source-list"></ol><p class="small-note">Source links need a connection. An included entry has passed the stated review; inclusion is not independent proof of every claim.</p></details></div><div class="reader-footer"><span id="reader-footer-label"><a id="entry-license" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span><button id="next-entry" aria-label="Read next archive entry">NEXT ENTRY <span aria-hidden="true">→</span></button></div></article></div>
     </section>
     <section class="growth section-pad" id="growth" aria-labelledby="growth-title">

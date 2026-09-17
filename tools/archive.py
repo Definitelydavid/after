@@ -271,12 +271,35 @@ def offline_html(catalog, metrics):
 '''.encode("utf-8")
 
 
+def make_zip(catalog, metrics, html_data, root):
+    import io, zipfile
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
+        fixed_time = (2026, 9, 17, 0, 0, 0)
+        def add(name, data):
+            info = zipfile.ZipInfo(name, fixed_time)
+            info.external_attr = 0o644 << 16
+            zf.writestr(info, data)
+        add("after-archive.html", html_data)
+        add("catalog.json", json_bytes(catalog))
+        add("metrics.json", json_bytes(metrics))
+        readme = root / "README.md"
+        add("README.md", readme.read_bytes() if readme.exists() else b"# AFTER Archive\n")
+        license_path = root / "CONTENT-LICENSE.md"
+        add("CONTENT-LICENSE.md", license_path.read_bytes() if license_path.exists() else b"CC-BY-4.0\n")
+        for e in catalog["entries"]:
+            add(f"entries/{e['id']}.json", json_bytes(e))
+    return buf.getvalue()
+
+
 def build(root):
     catalog, metrics = prepare(root)
     docs = root / "docs"
     require(not docs.is_symlink(), "docs cannot be a symlink")
     docs.mkdir(exist_ok=True)
-    outputs = {"catalog.json": json_bytes(catalog), "metrics.json": json_bytes(metrics), "after-archive.json": json_bytes(catalog), "after-archive.html": offline_html(catalog, metrics)}
+    html_data = offline_html(catalog, metrics)
+    zip_data = make_zip(catalog, metrics, html_data, root)
+    outputs = {"catalog.json": json_bytes(catalog), "metrics.json": json_bytes(metrics), "after-archive.json": json_bytes(catalog), "after-archive.html": html_data, "after-archive.zip": zip_data}
     for name in [*outputs, "SHA256SUMS"]:
         require(not (docs / name).is_symlink(), f"docs/{name} cannot be a symlink")
     for name, data in outputs.items(): (docs / name).write_bytes(data)

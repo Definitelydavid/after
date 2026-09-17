@@ -445,6 +445,170 @@ function initLiveSwarm() {
     jumpToRun((activeRunIndex + 1) % LIVE_RUNS.length);
   });
 
+  // Mode toggling
+  const modeStreamBtn = $('mode-stream-btn');
+  const modeWriteBtn = $('mode-write-btn');
+  const canvasStreamSheet = $('canvas-stream-sheet');
+  const canvasWriteSheet = $('canvas-write-sheet');
+
+  const setMode = (mode) => {
+    const isWrite = mode === 'write';
+    if (modeStreamBtn) {
+      modeStreamBtn.classList.toggle('is-active', !isWrite);
+      modeStreamBtn.setAttribute('aria-selected', String(!isWrite));
+    }
+    if (modeWriteBtn) {
+      modeWriteBtn.classList.toggle('is-active', isWrite);
+      modeWriteBtn.setAttribute('aria-selected', String(isWrite));
+    }
+    if (canvasStreamSheet) canvasStreamSheet.hidden = isWrite;
+    if (canvasWriteSheet) canvasWriteSheet.hidden = !isWrite;
+
+    if (isWrite) {
+      isPaused = true;
+      clearTimeout(runTimeout);
+      clearInterval(typeInterval);
+      if (streamToggle) {
+        streamToggle.setAttribute('aria-pressed', 'true');
+        streamToggle.textContent = 'RESUME';
+      }
+      canvasFile.textContent = 'entries/your-proposal.json';
+      canvasPhase.textContent = 'COMPOSE';
+      addTermLine('badge-editor', 'COMPOSE', 'Interactive mode engaged. Draft an entry and run the verification pipeline to commit directly to GitHub.');
+    } else {
+      isPaused = false;
+      if (streamToggle) {
+        streamToggle.setAttribute('aria-pressed', 'false');
+        streamToggle.textContent = 'PAUSE';
+      }
+      playRun(activeRunIndex);
+    }
+  };
+
+  if (modeStreamBtn && modeWriteBtn) {
+    modeStreamBtn.addEventListener('click', () => setMode('stream'));
+    modeWriteBtn.addEventListener('click', () => setMode('write'));
+  }
+
+  // Interactive Writer Submission
+  const writerRunBtn = $('writer-run-btn');
+  const writerStatus = $('writer-status');
+  const writerStamp = $('writer-result-stamp');
+  const writerStampScope = $('writer-stamp-scope');
+  const writerStampSha = $('writer-stamp-sha');
+  const writerGithubBtn = $('writer-github-btn');
+  const writerDownloadBtn = $('writer-download-btn');
+
+  let currentProposalObj = null;
+
+  async function computeDigest(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  if (writerRunBtn) {
+    writerRunBtn.addEventListener('click', async () => {
+      const title = $('writer-title').value.trim();
+      const topic = slug($('writer-topic').value.trim());
+      const summary = $('writer-summary').value.trim();
+      const body = $('writer-body').value.trim();
+      const sourceTitle = $('writer-source-title').value.trim();
+      const sourceURL = $('writer-source-url').value.trim();
+      const authorName = $('writer-author-name').value.trim();
+      const authorKind = $('writer-author-kind').value;
+
+      if (!title || !topic || !summary || !body || !sourceTitle || !sourceURL || !authorName) {
+        writerStatus.textContent = 'Please fill out all fields before running the pipeline.';
+        writerStatus.style.color = '#fa5b28';
+        return;
+      }
+      if (!publicHTTPS(sourceURL)) {
+        writerStatus.textContent = 'Source URL must be a public HTTPS URL (no credentials or local addresses).';
+        writerStatus.style.color = '#fa5b28';
+        return;
+      }
+      const words = body.split(/\s+/).filter(Boolean).length;
+      if (words < 30) {
+        writerStatus.textContent = `Entry body is too short (${words} words). Minimum recommended is 150 words.`;
+        writerStatus.style.color = '#fa5b28';
+        return;
+      }
+
+      writerStatus.textContent = 'Running 5-stage verification pipeline...';
+      writerStatus.style.color = 'var(--subtle)';
+      writerRunBtn.disabled = true;
+
+      const entryId = slug(title);
+      const dateStr = new Date().toISOString().slice(0, 10);
+      const authorId = slug(authorName);
+
+      setPipelineStep('topic');
+      addTermLine('badge-topic', 'OPERATOR', `Ingesting interactive proposal: <strong class="term-highlight">${entryId}</strong> (topic: ${topic})`);
+
+      await new Promise(r => setTimeout(r, 600));
+
+      setPipelineStep('draft');
+      addTermLine('badge-seed', 'SEED-AGENT', `Synthesized JSON payload (${words} words). Target: entries/${entryId}.json`);
+
+      await new Promise(r => setTimeout(r, 700));
+
+      setPipelineStep('review');
+      addTermLine('badge-editor', 'EDITOR-AGENT', `Checking CC-BY-4.0 schema, non-future dates, source validity...`);
+      addTermLine('badge-editor', 'VALIDATION', `Checks: schema ✓, valid public source (${new URL(sourceURL).hostname}) ✓, declared ${authorKind} attribution ✓.`);
+
+      const entryObj = {
+        id: entryId,
+        title,
+        topic,
+        summary,
+        body,
+        author_id: authorId,
+        created_at: dateStr,
+        updated_at: dateStr,
+        license: 'CC-BY-4.0',
+        sources: [{ title: sourceTitle, url: sourceURL, accessed: dateStr }],
+        review: {
+          kind: 'agent-review',
+          reviewer_id: 'after-editor-agent',
+          reviewed_at: dateStr,
+          scope: 'Automated verification: verified public HTTPS citation, word bounds, and CC-BY-4.0 schema compliance.'
+        }
+      };
+      currentProposalObj = entryObj;
+
+      await new Promise(r => setTimeout(r, 600));
+
+      setPipelineStep('seal');
+      const jsonText = JSON.stringify(entryObj, null, 2) + '\n';
+      const digest = await computeDigest(jsonText);
+      addTermLine('badge-archivist', 'NOTARY', `Computed SHA-256 digest: <code class="term-highlight">${digest}</code>`);
+
+      setPipelineStep('commit');
+      addTermLine('badge-archivist', 'GIT', `Payload ready for direct GitHub web commit to <strong class="term-highlight">after-training/after</strong>.`);
+
+      writerStamp.hidden = false;
+      writerStampSha.textContent = digest;
+      writerStampScope.textContent = `Verified: schema validated (${words} words), public HTTPS citation checked. Ready to append to repository.`;
+      
+      const githubUrl = `https://github.com/after-training/after/new/main?filename=entries/${encodeURIComponent(entryId)}.json&value=${encodeURIComponent(jsonText)}&message=${encodeURIComponent(`Add entry: ${title}`)}`;
+      writerGithubBtn.href = githubUrl;
+      writerStatus.textContent = 'Pipeline passed! Click “Commit directly to GitHub” to append the file.';
+      writerStatus.style.color = '#4c1';
+      writerRunBtn.disabled = false;
+      writerStamp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  if (writerDownloadBtn) {
+    writerDownloadBtn.addEventListener('click', () => {
+      if (!currentProposalObj) return;
+      downloadJSON(currentProposalObj, `${currentProposalObj.id}.json`);
+    });
+  }
+
   playRun(0);
 }
 

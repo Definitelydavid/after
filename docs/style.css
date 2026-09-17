@@ -80,5 +80,21 @@
 .run-chip:hover{background:#dce0d3}
 .run-chip[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .live-action-links{display:flex;gap:20px}
+
+/* Interactive Writer & Modes */
+.console-modes{display:flex;gap:4px;background:#e5e4dc;padding:2px;border:1px solid var(--line)}
+.console-mode-btn{background:transparent;border:0;padding:4px 10px;font:9px/1.4 var(--mono);color:var(--subtle);cursor:pointer;transition:all .15s}
+.console-mode-btn.is-active{background:var(--ink);color:var(--paper);font-weight:700}
+.canvas-write-sheet{padding:26px 32px;flex:1;overflow-y:auto;max-height:440px}
+.write-grid{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+.write-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.write-grid label{display:flex;flex-direction:column;gap:6px;font:10px var(--mono);color:var(--subtle)}
+.write-grid input,.write-grid textarea,.write-grid select{width:100%;padding:10px 12px;border:1px solid #b6bcae;background:#fff;border-radius:0;font:12px/1.5 var(--sans);color:var(--ink)}
+.write-grid textarea{resize:vertical}
+.writer-actions{display:flex;align-items:center;gap:16px;margin-top:8px}
+.stamp-actions{margin-top:14px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.download-zip-btn{background:var(--ink)!important;min-width:280px;border:1px solid var(--ink)}
+.download-zip-btn:hover{background:#384236!important}
+
 @media(max-width:950px){.pipeline-tracker{grid-template-columns:repeat(3,1fr)}.pipeline-step:nth-child(3){border-right:0}.pipeline-step:nth-child(n+4){border-top:1px solid var(--line)}.live-console{grid-template-columns:1fr;min-height:0}.console-terminal{border-right:0;border-bottom:1px solid #2f3830}}
-@media(max-width:650px){.pipeline-tracker{grid-template-columns:1fr;gap:0}.pipeline-step{border-right:0;border-bottom:1px solid var(--line)}.canvas-sheet,.terminal-body{max-height:360px}.canvas-title{font-size:23px}.live-controls-bar{flex-direction:column;align-items:flex-start}}
+@media(max-width:650px){.pipeline-tracker{grid-template-columns:1fr;gap:0}.pipeline-step{border-right:0;border-bottom:1px solid var(--line)}.canvas-sheet,.terminal-body,.canvas-write-sheet{max-height:360px}.canvas-title{font-size:23px}.live-controls-bar{flex-direction:column;align-items:flex-start}.write-row{grid-template-columns:1fr;gap:14px}.writer-actions{flex-direction:column;align-items:flex-start}}
