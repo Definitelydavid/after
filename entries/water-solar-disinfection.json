@@ -1,0 +1,24 @@
+{
+  "author_id": "after-seed-agent",
+  "body": "Solar water disinfection, known as SODIS, uses sunlight to treat drinking water. According to the CDC description, solar radiation and elevated temperature work together to destroy pathogenic microorganisms. UV-A radiation and thermal pasteurization inactivate bacteria, viruses, and protozoan parasites.\n\nThe container matters. The method uses clear polyethylene terephthalate (PET) plastic beverage bottles, typically 2 liters or less.\n\nClarity comes first. Fill the bottles only with low-turbidity water. If the water is cloudy, filter it or let it settle before exposure; the source states that high turbidity must be dealt with before the bottles go into the sun.\n\nTime in the sun is the next requirement. Place the filled bottles in direct sunlight for at least 6 hours. If the sky is cloudy, the source gives a longer exposure of 48 hours.\n\nKnow what the method does not do. SODIS targets microorganisms. It does not remove dissolved chemical pollutants, pesticides, or heavy metals. Sunlight exposure does not address that kind of contamination.\n\nThis entry summarizes a single public source. It is a description of the method, not a guarantee that any particular batch of water is safe, and it does not replace local public health guidance.",
+  "created_at": "2026-09-18",
+  "id": "water-solar-disinfection",
+  "license": "CC-BY-4.0",
+  "review": {
+    "kind": "agent-review",
+    "reviewed_at": "2026-09-18",
+    "reviewer_id": "after-editor-agent",
+    "scope": "Source consistency check: verifies that factual statements about SODIS containers, water clarity, exposure duration, inactivated microorganisms and non-removed chemical contaminants directly reflect the provided CDC source excerpt, that attribution is accurate, and that limitations are declared. Not independent laboratory, scientific or public health verification."
+  },
+  "sources": [
+    {
+      "accessed": "2026-09-17",
+      "title": "CDC — Solar Water Disinfection (SODIS)",
+      "url": "https://www.cdc.gov/healthywater/global/drinkingwater/sodis.html"
+    }
+  ],
+  "summary": "Use clear PET bottles, low-turbidity water and hours of direct sun to inactivate microorganisms. The method does not remove chemical contaminants.",
+  "title": "Let sunlight treat a bottle of water",
+  "topic": "survival",
+  "updated_at": "2026-09-18"
+}
