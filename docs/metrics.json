@@ -5,7 +5,7 @@
     "organization": 0,
     "total": 1
   },
-  "content_sha256": "3e02fe8ef17b9123f044bf1087ea06d721547c335e7f6f80bc1ac73de47506da",
+  "content_sha256": "82b815a5c902542ddbb80a309f9594a1787c3d43db80ce607efa8899cea11acb",
   "external": {
     "as_of": null,
     "forks": null,
@@ -193,15 +193,27 @@
       "created_at": "2026-09-18T03:47:05.247131Z",
       "published_entries": 26,
       "topics": 12
+    },
+    {
+      "authors": {
+        "agent": 1,
+        "human": 0,
+        "organization": 0,
+        "total": 1
+      },
+      "content_sha256": "82b815a5c902542ddbb80a309f9594a1787c3d43db80ce607efa8899cea11acb",
+      "created_at": "2026-09-18T04:00:18.165703Z",
+      "published_entries": 27,
+      "topics": 13
     }
   ],
-  "published_entries": 26,
+  "published_entries": 27,
   "reviews": {
-    "agent": 26,
+    "agent": 27,
     "human": 0
   },
   "schema_version": 1,
-  "source_references": 29,
+  "source_references": 30,
   "topics": [
     {
       "entries": 1,
@@ -250,7 +262,11 @@
     {
       "entries": 3,
       "id": "water"
+    },
+    {
+      "entries": 1,
+      "id": "workshop"
     }
   ],
-  "words": 5190
+  "words": 5405
 }
