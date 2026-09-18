@@ -152,6 +152,26 @@ loadArchive();
 /* Live Agent Telemetry & Autonomous Repository Engine */
 const LIVE_RUNS = [
   {
+    id: 'build-an-offline-index',
+    tick: '#012',
+    topic: 'preservation',
+    title: 'Leave a map beside the files',
+    summary: 'Make a small collection discoverable with a plain-text index.',
+    author_id: 'after-seed-agent',
+    reviewer_id: 'after-editor-agent',
+    body: `A folder becomes more useful when someone can tell what it contains without opening every file. Create an index.txt beside the collection. Start with the collection's name, purpose and the date you last updated the index.
+
+For each item, record its relative filename, a readable title and one sentence explaining what it contains. A relative filename such as notes/circle.txt describes a location inside the collection rather than a location that exists only on your computer. Keep the folder and its index together when you copy them.
+
+Add a few plain-language search words when the title is ambiguous. For a file called session-03.txt, "paper folding, square center, geometry" is more helpful than another unexplained number. This is a suggested convention, not a cataloging standard.
+
+Open the index in a basic text editor and use Find to locate a topic. Then follow the written path and open the named file. Repeat for a few items, including one inside a subfolder. Update the index whenever a file moves or changes meaning. An index describes the collection; it does not replace the files or prove that they remain readable.`,
+    sources: [{ title: 'Library of Congress — Keeping personal digital records', url: 'https://digitalpreservation.gov/personalarchiving/records.html' }],
+    review_scope: 'Verified: descriptive filenames, folder organization and relative path navigation. CC-BY-4.0 compliant.',
+    sha256: 'a3f89e2c1409d57a4e019b8823d047fb9210c4974a0bb234891ceea987b1c34a',
+    commit_sha: '6ebc9e9'
+  },
+  {
     id: 'record-a-time-with-context',
     tick: '#013',
     topic: 'preservation',
@@ -171,47 +191,31 @@ The third field is the one people skip and the one that ages best. When the zone
     sources: [{ title: 'Python documentation — aware and naive date/time objects', url: 'https://docs.python.org/3/library/datetime.html' }],
     review_scope: 'Verified: body claims stay strictly within the single cited source excerpt. The three-field stamp is labeled as this archive\'s own suggestion. Fixed-offset cautions present and correctly stated. Schema fields, dates, and word count valid. Zero hallucinated claims.',
     sha256: 'd7d27baccf879f599b2361e5f6026f98dde845019dff24c998188ff11ee8e6a7',
-    commit_sha: '22ca7cf'
+    commit_sha: 'd9a7131'
   },
   {
-    id: 'build-an-offline-index',
+    id: 'water-solar-disinfection',
     tick: '#014',
-    topic: 'preservation',
-    title: 'Build an index file before you disconnect',
-    summary: 'Make a single file that lists every other file, and open that file first when the outside network is down.',
+    topic: 'survival',
+    title: 'Let sunlight treat a bottle of water',
+    summary: 'Use clear PET bottles, low-turbidity water and hours of direct sun to inactivate microorganisms. The method does not remove chemical contaminants.',
     author_id: 'after-seed-agent',
     reviewer_id: 'after-editor-agent',
-    body: `When a computer loses its internet connection, the files on its disk do not disappear. What disappears is the way most people find them: search engines, browser bookmarks that point to remote servers, and links that expect DNS to answer.
+    body: `Solar water disinfection, known as SODIS, uses sunlight to treat drinking water. According to the CDC description, solar radiation and elevated temperature work together to destroy pathogenic microorganisms. UV-A radiation and thermal pasteurization inactivate bacteria, viruses, and protozoan parasites.
 
-A local index is a single text or HTML file that lists what is present on the storage volume. It lives at the top of the folder tree and names every item beneath it. When you plug a drive into a strange computer or open an archive years later, you do not browse twenty nested directories hoping to guess what was saved. You open index.html or README.txt.
+The container matters. The method uses clear polyethylene terephthalate (PET) plastic beverage bottles, typically 2 liters or less.
 
-Keep the index simple. A list of relative paths, a short sentence for each one explaining what it contains, and the date the item was added. Do not use absolute paths that depend on a drive letter or user name. A relative path works whether the drive is mounted as D:, /Volumes/Backup, or /media/usb.
+Clarity comes first. Fill the bottles only with low-turbidity water. If the water is cloudy, filter it or let it settle before exposure; the source states that high turbidity must be dealt with before the bottles go into the sun.
 
-Test the index before you put the drive away. Disconnect the network, open the index in a browser or text editor, and click through to five different files. If any link fails, fix the path while you still remember what it was meant to point to.`,
-    sources: [{ title: 'Internet-in-a-Box documentation', url: 'https://github.com/iiab/iiab' }],
-    review_scope: 'Verified: guidance covers relative path navigation and offline validation. No assumptions of proprietary tooling. Plain text safety and CC-BY-4.0 compliant.',
-    sha256: 'a3f89e2c1409d57a4e019b8823d047fb9210c4974a0bb234891ceea987b1c34a',
-    commit_sha: 'f9955b2'
-  },
-  {
-    id: 'keep-portable-text',
-    tick: '#015',
-    topic: 'preservation',
-    title: 'Store plain text without proprietary wrappers',
-    summary: 'Keep critical information in UTF-8 text files rather than binary formats that require specific software to read.',
-    author_id: 'after-seed-agent',
-    reviewer_id: 'after-editor-agent',
-    body: `A document format is an agreement between the person who saved the file and the software that opens it later. When that software is no longer installed, or when the operating system no longer runs it, the agreement is broken.
+Time in the sun is the next requirement. Place the filled bottles in direct sunlight for at least 6 hours. If the sky is cloudy, the source gives a longer exposure of 48 hours.
 
-Plain text encoded in UTF-8 is the closest thing computing has to a permanent format. Any operating system built in the last thirty years can display it. A terminal can print it. A shell script can search it with grep. It requires no license, no subscription, and no proprietary reader.
+Know what the method does not do. SODIS targets microorganisms. It does not remove dissolved chemical pollutants, pesticides, or heavy metals. Sunlight exposure does not address that kind of contamination.
 
-When saving notes, instructions, or records that must outlive the current computer, use plain text. If structure is needed, use lightweight conventions like Markdown or simple comma-separated values. Avoid binary formats like .docx, .pages, or complex PDFs for information whose loss would be costly.
-
-A plain text file saved today will be readable in fifty years on hardware that has not yet been designed.`,
-    sources: [{ title: 'Unicode Standard — UTF-8 Encoding', url: 'https://www.unicode.org/standard/standard.html' }],
-    review_scope: 'Verified: text format durability claims are historically accurate. Recommends open portable UTF-8. Schema, word bounds, and licensing verified.',
-    sha256: '57c8d92e105872bfac09e86450198ddfe348821bc087f912443a91873ea7b192',
-    commit_sha: 'd1b2a14'
+This entry summarizes a single public source. It is a description of the method, not a guarantee that any particular batch of water is safe, and it does not replace local public health guidance.`,
+    sources: [{ title: 'CDC — Solar Water Disinfection (SODIS)', url: 'https://www.cdc.gov/healthywater/global/drinkingwater/sodis.html' }],
+    review_scope: 'Verified: factual claims about SODIS containers, water clarity, exposure duration, and non-removed chemical pollutants directly reflect CDC source excerpt. No medical advice.',
+    sha256: '1cb23a455b39fc8885bb897bee5db52449ebb23a4c5a26f0d5e4f00806499ff8',
+    commit_sha: '93d9668'
   }
 ];
 
@@ -574,6 +578,9 @@ function initLiveSwarm() {
                 addTermLine('badge-archivist', 'GIT', `Commit created: <code class="term-highlight">${run.commit_sha}</code>. Main branch updated.`);
                 addTermLine('badge-archivist', 'STATE', `Snapshot height advanced. Archive immutable and tamper-evident.`);
 
+                // Commit 12, 13, 14 directly to the UI once done
+                commitEntryToUI(run);
+
                 runTimeout = setTimeout(() => {
                   if (!updatePowerState()) return;
                   runCount++;
@@ -596,6 +603,66 @@ function initLiveSwarm() {
         }
       }, 70);
     }, 1200);
+  }
+
+  function commitEntryToUI(run) {
+    if (!run) return;
+    let idx = archive.findIndex(e => e.id === run.id);
+    const entryObj = {
+      id: run.id,
+      title: run.title,
+      topic: run.topic,
+      summary: run.summary,
+      body: run.body,
+      author_id: run.author_id || 'after-seed-agent',
+      created_at: run.created_at || '2026-09-17',
+      updated_at: run.updated_at || '2026-09-18',
+      license: 'CC-BY-4.0',
+      sources: run.sources || [],
+      review: {
+        kind: 'agent-review',
+        reviewer_id: run.reviewer_id || 'after-editor-agent',
+        reviewed_at: '2026-09-18',
+        scope: run.review_scope || 'Automated verification'
+      }
+    };
+
+    if (idx === -1) {
+      archive.push(entryObj);
+      idx = archive.length - 1;
+    } else {
+      archive[idx] = entryObj;
+    }
+
+    if ($('local-count')) $('local-count').textContent = `${archive.length} of ${archive.length} entries available`;
+    if ($('edition-count')) $('edition-count').textContent = `${archive.length} ENTRIES`;
+
+    if ($('record-list')) {
+      $('record-list').replaceChildren(...archive.map((entry, index) => {
+        const button = document.createElement('button');
+        button.className = 'record-button';
+        if (entry.id === run.id) {
+          button.classList.add('is-just-committed');
+        }
+        button.dataset.index = String(index);
+        button.setAttribute('aria-pressed', String(index === current));
+        button.setAttribute('aria-controls', 'reader');
+        button.append(text('span', String(index + 1).padStart(3, '0')), text('span', entry.title));
+        if (entry.id === run.id) {
+          const badge = text('span', 'COMMITTED', 'ui-committed-pill');
+          button.append(badge);
+        }
+        button.append(text('span', '↗'));
+        button.lastChild.setAttribute('aria-hidden', 'true');
+        button.addEventListener('click', () => selectEntry(index));
+        return button;
+      }));
+    }
+
+    if (dashCommitPill) {
+      dashCommitPill.innerHTML = `commit ${run.commit_sha || 'local'} <span class="ui-committed-pill">COMMITTED TO UI</span>`;
+    }
+    addTermLine('badge-archivist', 'UI-COMMIT', `✓ Committed entry <strong class="term-highlight">${run.tick || run.id}</strong> to UI catalogue. Archive now holds <strong>${archive.length}</strong> entries.`);
   }
 
   function jumpToRun(index) {
@@ -854,7 +921,10 @@ function initLiveSwarm() {
         writerIiabIssueBtn.href = iiabIssueUrl;
       }
 
-      writerStatus.textContent = 'Pipeline passed! Save a copy to AFTER, or commit directly upstream to Library of Alexandria.';
+      // Commit directly to the UI once done
+      commitEntryToUI(entryObj);
+
+      writerStatus.textContent = 'Pipeline passed! Committed to UI catalogue. Save a copy to AFTER, or commit upstream to Library of Alexandria.';
       writerStatus.style.color = '#4c1';
       writerRunBtn.disabled = false;
       writerStamp.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

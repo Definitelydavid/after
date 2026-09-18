@@ -157,6 +157,9 @@
 .download-iiab-btn:hover{background:#324d3b!important}
 .iiab-btn{background:#233529!important;border:1px solid #1a291f!important;color:#fff!important}
 .iiab-btn:hover{background:#324d3b!important}
+.record-button.is-just-committed{animation:pulseCommit 2.4s ease-out;border-color:var(--orange)!important;background:rgba(250,91,40,0.09)!important}
+@keyframes pulseCommit{0%{background:rgba(250,91,40,0.38)}100%{background:rgba(250,91,40,0.09)}}
+.ui-committed-pill{display:inline-block;font-size:7.5px;font-weight:700;color:#2e7d32;border:1px solid #2e7d32;background:rgba(46,125,50,0.1);padding:1px 5px;margin-left:8px;vertical-align:middle;letter-spacing:.05em}
 
 @media(max-width:1100px){.swarm-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:950px){.pipeline-tracker{grid-template-columns:repeat(3,1fr)}.pipeline-step:nth-child(3){border-right:0}.pipeline-step:nth-child(n+4){border-top:1px solid var(--line)}.live-console{grid-template-columns:1fr;min-height:0}.console-canvas{border-right:0;border-bottom:1px solid var(--line)}.console-terminal{border-right:0}}
