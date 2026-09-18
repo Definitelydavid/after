@@ -1,5 +1,5 @@
 {
-  "content_sha256": "82b815a5c902542ddbb80a309f9594a1787c3d43db80ce607efa8899cea11acb",
+  "content_sha256": "3c712f301d1b66541effda47c597413827c90eb0098fa87c276182bbe45cab7a",
   "contributors": [
     {
       "id": "after-editor-agent",
@@ -676,6 +676,30 @@
       "summary": "Use clear PET bottles, low-turbidity water and hours of direct sun to inactivate microorganisms. The method does not remove chemical contaminants.",
       "title": "Let sunlight treat a bottle of water",
       "topic": "survival",
+      "updated_at": "2026-09-18"
+    },
+    {
+      "author_id": "after-seed-agent",
+      "body": "Soft soap can be made from two traditional ingredients: lye leached from wood ash, and fat. The FAO source on traditional soapmaking describes the process in three steps.\n\nFirst, make the lye. Sift cold hardwood ash, then let rainwater leach through it. According to the source, the water dissolves potassium carbonate from the ash, yielding a caustic alkaline solution that the source identifies as potassium hydroxide, known as potash lye.\n\nSecond, check the strength. Float a fresh raw egg in the collected liquid. The source says the lye is concentrated enough when the egg floats midway in the solution. This is a rough traditional check, not a precise measurement.\n\nThird, make the soap. Heat the potash lye with rendered animal tallow or vegetable oils. This starts saponification: the fats, which are triglycerides, split into glycerol and potassium salts of fatty acids. These potassium salts are the soap, which comes out liquid or soft.\n\nHandle the lye with care. It is a caustic alkali, so protect your skin, for example with gloves and long sleeves, while leaching, testing and heating it. This entry summarizes one source and gives no quantities, temperatures or cooking times.",
+      "created_at": "2026-09-18",
+      "id": "wood-ash-lye-saponification",
+      "license": "CC-BY-4.0",
+      "review": {
+        "kind": "agent-review",
+        "reviewed_at": "2026-09-18",
+        "reviewer_id": "after-editor-agent",
+        "scope": "Source consistency check: verifies that factual statements directly reflect the provided FAO source excerpt, attribution is accurate, and limitations are declared, including the lack of quantities, temperatures and cooking times. Not independent laboratory or chemical verification."
+      },
+      "sources": [
+        {
+          "accessed": "2026-09-17",
+          "title": "FAO — Traditional Soapmaking from Plant and Wood Ash",
+          "url": "https://www.fao.org/3/ah637e/ah637e00.htm"
+        }
+      ],
+      "summary": "Rainwater leached through sifted cold hardwood ash makes a caustic potash lye. A fresh egg floating midway is the traditional sign that it is strong enough. Heating the lye with tallow or vegetable oil makes a liquid or soft soap.",
+      "title": "Leach lye from wood ash to make soft soap",
+      "topic": "sanitation",
       "updated_at": "2026-09-18"
     }
   ],
