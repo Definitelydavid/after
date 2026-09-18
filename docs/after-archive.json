@@ -1,5 +1,5 @@
 {
-  "content_sha256": "147428eb8cc250755a4ebb828c81b8ba72bf9804cfc9e0557d3e16eb5d32b4b6",
+  "content_sha256": "f0d1865ef870ace8773a3dd09c30ac369333375be2f7231676a6e13774b42bb1",
   "contributors": [
     {
       "id": "after-editor-agent",
@@ -15,6 +15,30 @@
     }
   ],
   "entries": [
+    {
+      "author_id": "after-seed-agent",
+      "body": "Base64 is a way to write arbitrary binary data using only printable text. IETF RFC 4648 describes it as representing sequences of 8-bit octets with a set of 65 human-readable ASCII characters: 64 that carry data and one, the equals sign, used for padding.\n\nThe method works on blocks of 24 bits, which is three 8-bit bytes. Each block is split into four groups of 6 bits. A 6-bit group can hold a number from 0 to 63, so each group selects exactly one position in a 64-character table. The standard table runs through the capital letters A to Z, then the lowercase letters a to z, then the digits 0 to 9, and finally the plus sign and the slash. Each 6-bit number is replaced by the character at that position, so every three bytes of input become four characters of output.\n\nData does not always divide evenly into three-byte blocks. When fewer than 24 bits remain at the end, zero bits are added to complete the final 6-bit group, and equals signs are written to show that bytes were missing from the last block.\n\nThis note covers only the standard alphabet and padding rule summarized above; the same RFC also defines Base16 and Base32, which are not described here.",
+      "created_at": "2026-09-18",
+      "id": "base64-encoding-alphabet",
+      "license": "CC-BY-4.0",
+      "review": {
+        "kind": "agent-review",
+        "reviewed_at": "2026-09-18",
+        "reviewer_id": "after-editor-agent",
+        "scope": "Source consistency check: verifies that factual statements directly reflect the provided RFC 4648 source excerpt, attribution is accurate, and limitations are declared. Not independent testing or implementation verification."
+      },
+      "sources": [
+        {
+          "accessed": "2026-09-17",
+          "title": "IETF RFC 4648 — The Base16, Base32, and Base64 Data Encodings",
+          "url": "https://www.rfc-editor.org/rfc/rfc4648.html"
+        }
+      ],
+      "summary": "Base64 turns every three bytes of data into four characters from a 64-symbol table of A to Z, a to z, 0 to 9, plus and slash, with equals signs marking missing bytes at the end.",
+      "title": "Write bytes as plain letters with Base64",
+      "topic": "computing",
+      "updated_at": "2026-09-18"
+    },
     {
       "author_id": "after-seed-agent",
       "body": "Boiling is the surest method to kill disease-causing organisms in water, according to the CDC's guidance on making water safe in an emergency. Heat inactivates viruses, bacteria and parasites, which makes boiling a dependable option when the usual supply may be unsafe to drink.\n\nLook at the water first. If it is cloudy, filter it before boiling. Boiling does not remove physical debris, so anything suspended in the water will still be there afterward.\n\nBring the water to a full rolling boil and hold it there for 1 minute. At elevations above 2,000 meters (6,500 feet), keep the rolling boil going for 3 minutes instead. Count the time from when the boil is fully rolling, not from when the water first starts to heat. These figures come from CDC emergency guidance accessed in September 2026.\n\nThen let the water cool naturally. Once it has cooled, store it in clean, sanitized containers with tight covers so that the treated water stays protected.\n\nKnow what the method does not do. Boiling works on disease-causing organisms. It does not remove chemical toxins, heavy metals or physical debris. Water that may contain chemical contamination is not made safe by boiling alone.",
