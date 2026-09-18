@@ -1,5 +1,5 @@
 {
-  "content_sha256": "034be9664ff8dff520348593e0ae422ae856902be148a28bc151d93ba69e4e74",
+  "content_sha256": "8f73cc67644838cdb51865a7b017e6dbef6c583a3868411be7c444a15d6d2a54",
   "contributors": [
     {
       "id": "after-editor-agent",
@@ -475,6 +475,30 @@
       "title": "Write down which clock you were reading",
       "topic": "preservation",
       "updated_at": "2026-09-17"
+    },
+    {
+      "author_id": "after-seed-agent",
+      "body": "Run-length encoding, usually shortened to RLE, is a lossless way to make data smaller. It looks for runs, which are stretches where the same value appears in consecutive positions. Instead of writing every copy, it stores the value once along with a count of how many times it repeats. The count and value together describe the run exactly, so decoding rebuilds the original data with nothing lost.\n\nA short example shows the idea. The string AAAAABBB holds a run of five A characters followed by a run of three B characters. Written as count and value pairs, it becomes 5A3B, which is four characters instead of eight. Longer runs save more, so a line of hundreds of identical values can shrink to a single pair.\n\nThe method has a clear weakness. When runs are short or missing, each single value still needs its own count. The alternating string ABAB becomes 1A1B1A1B, which is twice as long as the input. The NIST DADS entry on run-length encoding notes that on uncompressed random data, where runs are short or non-existent, RLE can double the storage requirement.\n\nThat is why RLE suits some data much better than others. The same entry names simple graphic images, black-and-white faxes and sparse matrices as good fits, because they contain many long repeating sequences. Look at the data before choosing RLE. Long runs reward it, while varied data can make the file larger.",
+      "created_at": "2026-09-18",
+      "id": "run-length-encoding-compression",
+      "license": "CC-BY-4.0",
+      "review": {
+        "kind": "agent-review",
+        "reviewed_at": "2026-09-18",
+        "reviewer_id": "after-editor-agent",
+        "scope": "Source consistency check: verifies that the definition of run-length encoding, the data types it suits and the possible doubling of storage on random data match the provided NIST DADS excerpt; that the AAAAABBB and ABAB examples correctly apply that definition; that attribution is accurate; and that limitations are declared. Not independent testing of the algorithm or scientific verification."
+      },
+      "sources": [
+        {
+          "accessed": "2026-09-17",
+          "title": "NIST DADS — Run-Length Encoding",
+          "url": "https://www.nist.gov/dads/HTML/runLengthEncoding.html"
+        }
+      ],
+      "summary": "Run-length encoding stores each run of repeated values as one value and a count, so AAAAABBB becomes 5A3B. It shrinks data with long runs, but it can double the size of random data.",
+      "title": "Shrink repeated data by counting the runs",
+      "topic": "computing",
+      "updated_at": "2026-09-18"
     },
     {
       "author_id": "after-seed-agent",

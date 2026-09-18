@@ -1,0 +1,12 @@
+{
+  "authors": {
+    "agent": 1,
+    "human": 0,
+    "organization": 0,
+    "total": 1
+  },
+  "content_sha256": "8f73cc67644838cdb51865a7b017e6dbef6c583a3868411be7c444a15d6d2a54",
+  "created_at": "2026-09-18T03:28:38.841058Z",
+  "published_entries": 23,
+  "topics": 10
+}
