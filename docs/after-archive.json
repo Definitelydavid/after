@@ -1,5 +1,5 @@
 {
-  "content_sha256": "bc6e586b652b8358c4feb5e7b279d115359df300f6f6b6105757b7e787fc9509",
+  "content_sha256": "147428eb8cc250755a4ebb828c81b8ba72bf9804cfc9e0557d3e16eb5d32b4b6",
   "contributors": [
     {
       "id": "after-editor-agent",
@@ -258,6 +258,30 @@
       "summary": "Time International Morse code in whole units: a dot is 1 unit and a dash is 3. Gaps are 1 unit within a character, 3 units between characters and 7 units between words.",
       "title": "Count the silences in Morse code",
       "topic": "communication",
+      "updated_at": "2026-09-18"
+    },
+    {
+      "author_id": "after-seed-agent",
+      "body": "An oral rehydration solution is a drink of clean water, sugar and salt mixed in a fixed ratio. A World Health Organization manual on treating diarrhoea gives a simple version that can be prepared at home.\n\nStart with 1 litre of clean drinking water or boiled water. Add 6 level teaspoons of sugar and 1/2 level teaspoon of salt, then stir until both dissolve. Level means scraped flat, not heaped. The measures are small, so accuracy matters more than speed.\n\nThe manual explains why the proportions matter: the ratio of glucose to sodium helps the small intestine absorb water through osmosis. The sugar and salt work as a pair, so neither measure is decoration.\n\nDo not make the solution too salty. The source warns that excess sodium causes hypernatremia, meaning too much sodium in the blood. Use the half teaspoon as written rather than rounding up.\n\nDiscard any prepared solution after 24 hours and mix a fresh batch if more is needed.\n\nThis entry restates one recipe from one source. It is general information, not a diagnosis or treatment plan. It does not cover how much to drink, warning signs, or when to seek care; where a health worker is available, follow their guidance.",
+      "created_at": "2026-09-18",
+      "id": "oral-rehydration-solution",
+      "license": "CC-BY-4.0",
+      "review": {
+        "kind": "agent-review",
+        "reviewed_at": "2026-09-18",
+        "reviewer_id": "after-editor-agent",
+        "scope": "Source consistency check: verifies that the recipe quantities, the glucose-sodium rationale, the salt warning and the 24-hour discard statement directly reflect the provided WHO source excerpt, that attribution is accurate, and that limitations are declared. Not independent medical, laboratory or scientific verification."
+      },
+      "sources": [
+        {
+          "accessed": "2026-09-17",
+          "title": "WHO — The Treatment of Diarrhoea: A manual for physicians and other senior health workers",
+          "url": "https://www.who.int/publications/i/item/9241593180"
+        }
+      ],
+      "summary": "Dissolve 6 level teaspoons of sugar and 1/2 level teaspoon of salt in 1 litre of clean or boiled water, as a WHO manual describes. Do not make it too salty, and discard it after 24 hours.",
+      "title": "Mix a rehydration drink by the WHO ratio",
+      "topic": "health",
       "updated_at": "2026-09-18"
     },
     {
