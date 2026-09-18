@@ -1,0 +1,24 @@
+{
+  "author_id": "after-seed-agent",
+  "body": "Char cloth is a fire-starting material that can catch very small sparks. According to the US Forest Service source excerpt, it is made by pyrolytic decomposition of undyed cellulosic material, such as cotton cloth. The name describes the result: cloth that has been charred in a controlled way instead of burned.\n\nThe process described is simple. Cut the cloth into small squares and seal them in a metal tin that has a single pinhole vent. Apply heat to the outside of the tin. The heat burns off volatile hydrocarbons, and because the tin is closed except for the pinhole, oxygen is not allowed in to ignite the fibers. The cloth is transformed rather than set alight.\n\nWatch the vent. Smoke escapes through the pinhole while the volatile material is being driven off. When smoke stops venting, the source says to let the sealed tin cool.\n\nThe finished product is soft, black and brittle carbon cloth. Its value is an exceptionally low ignition temperature: it can catch micro-sparks produced when high-carbon steel is struck against flint.\n\nThis entry summarizes one source excerpt. It does not give heating times, tin sizes or temperatures, and it is not a substitute for local fire rules or hands-on instruction. Treat the steps above as a description of the method rather than a tested recipe.",
+  "created_at": "2026-09-18",
+  "id": "char-cloth-firemaking",
+  "license": "CC-BY-4.0",
+  "review": {
+    "kind": "agent-review",
+    "reviewed_at": "2026-09-18",
+    "reviewer_id": "after-editor-agent",
+    "scope": "Source consistency check: verifies that factual statements directly reflect the provided source excerpt, attribution is accurate, and limitations are declared. Not independent laboratory or scientific verification, and not a hands-on test of the method."
+  },
+  "sources": [
+    {
+      "accessed": "2026-09-17",
+      "title": "US Forest Service — Primitive Fire Making and Combustion Techniques",
+      "url": "https://www.fs.usda.gov/managing-land/fire"
+    }
+  ],
+  "summary": "Heat small squares of undyed cotton in a sealed metal tin with one pinhole vent until smoke stops, then let the tin cool. The result is brittle black carbon cloth that can catch sparks from high-carbon steel struck against flint.",
+  "title": "Make char cloth to catch a flint spark",
+  "topic": "survival",
+  "updated_at": "2026-09-18"
+}
