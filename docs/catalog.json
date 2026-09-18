@@ -1,5 +1,5 @@
 {
-  "content_sha256": "d4ec905bb5f316d2230c21a6d2b65f72e75fe8572c0846960ba434d670cd0d98",
+  "content_sha256": "0cff642a3b1af5a50600b83c524e7e231a276c3d5ac4341ceb47f4bd37f03ea9",
   "contributors": [
     {
       "id": "after-editor-agent",
@@ -15,6 +15,30 @@
     }
   ],
   "entries": [
+    {
+      "author_id": "after-seed-agent",
+      "body": "Boiling is the surest method to kill disease-causing organisms in water, according to the CDC's guidance on making water safe in an emergency. Heat inactivates viruses, bacteria and parasites, which makes boiling a dependable option when the usual supply may be unsafe to drink.\n\nLook at the water first. If it is cloudy, filter it before boiling. Boiling does not remove physical debris, so anything suspended in the water will still be there afterward.\n\nBring the water to a full rolling boil and hold it there for 1 minute. At elevations above 2,000 meters (6,500 feet), keep the rolling boil going for 3 minutes instead. Count the time from when the boil is fully rolling, not from when the water first starts to heat. These figures come from CDC emergency guidance accessed in September 2026.\n\nThen let the water cool naturally. Once it has cooled, store it in clean, sanitized containers with tight covers so that the treated water stays protected.\n\nKnow what the method does not do. Boiling works on disease-causing organisms. It does not remove chemical toxins, heavy metals or physical debris. Water that may contain chemical contamination is not made safe by boiling alone.",
+      "created_at": "2026-09-18",
+      "id": "boiling-water-purification",
+      "license": "CC-BY-4.0",
+      "review": {
+        "kind": "agent-review",
+        "reviewed_at": "2026-09-18",
+        "reviewer_id": "after-editor-agent",
+        "scope": "Source consistency check: verifies that factual statements (boil durations, elevation threshold, organisms inactivated, contaminants not removed, cooling and storage steps) directly reflect the provided CDC source excerpt, that attribution is accurate, and that the method's limitations are declared. Not independent laboratory or scientific verification."
+      },
+      "sources": [
+        {
+          "accessed": "2026-09-17",
+          "title": "CDC — Making Water Safe in an Emergency: Boiling Water",
+          "url": "https://www.cdc.gov/healthywater/emergency/making-water-safe.html"
+        }
+      ],
+      "summary": "Bring water to a full rolling boil for 1 minute, or 3 minutes above 2,000 meters (6,500 feet), to kill disease-causing organisms. Boiling does not remove chemical toxins, heavy metals or physical debris.",
+      "title": "Boil the water, then know what boiling misses",
+      "topic": "water",
+      "updated_at": "2026-09-18"
+    },
     {
       "author_id": "after-seed-agent",
       "body": "A folder becomes more useful when someone can tell what it contains without opening every file. Create an index.txt beside the collection. Start with the collection's name, purpose and the date you last updated the index.\n\nFor each item, record its relative filename, a readable title and one sentence explaining what it contains. A relative filename such as notes/circle.txt describes a location inside the collection rather than a location that exists only on your computer. Keep the folder and its index together when you copy them.\n\nAdd a few plain-language search words when the title is ambiguous. For a file called session-03.txt, \"paper folding, square center, geometry\" is more helpful than another unexplained number. This is a suggested convention, not a cataloging standard.\n\nOpen the index in a basic text editor and use Find to locate a topic. Then follow the written path and open the named file. Repeat for a few items, including one inside a subfolder. Update the index whenever a file moves or changes meaning. An index describes the collection; it does not replace the files or prove that they remain readable.",
