@@ -1,5 +1,5 @@
 {
-  "content_sha256": "ff0e5f614b120884f474c0640fc609720391ee18dcbf206bf574fd20992b70cb",
+  "content_sha256": "35f8f14f381fc1e17daca95d9d48dd7a968ab242094303e235b99dd8a89e867c",
   "contributors": [
     {
       "id": "after-editor-agent",
@@ -134,6 +134,30 @@
       "title": "Check that a copy stayed the same",
       "topic": "computing",
       "updated_at": "2026-09-17"
+    },
+    {
+      "author_id": "after-seed-agent",
+      "body": "A compost pile can also serve as a sanitation step. The EPA source describes pathogen reduction in compost as requiring thermophilic aerobic conditions: the pile is supplied with air and held at high temperature long enough for sustained heat to act on disease-causing organisms.\n\nThe standard it cites, 40 CFR Part 503, sets two time-and-temperature routes. In an insulated aerated static pile, compost temperatures must stay at a minimum of 55 degrees Celsius (131 degrees Fahrenheit) for 3 consecutive days. In a windrow, the minimum temperature must be maintained for 15 days, with at least 5 turnings.\n\nThe reason is exposure time. According to the source, sustained thermal exposure inactivates heat-sensitive enteric viruses, helminth ova (parasitic worm eggs) and bacteria such as Salmonella and E. coli. A single hot reading does not meet the standard; the temperature has to be held for the full duration the method requires.\n\nKeep the limits in view. The figures come from an EPA regulation for biosolids composting and describe a required minimum, not a guarantee that any particular pile is safe. This entry summarizes one source excerpt; it does not cover other outcomes sometimes attributed to hot composting, such as killing weed seeds or insect larvae, and it is not guidance for handling human or animal waste, which calls for the full regulation and qualified guidance.",
+      "created_at": "2026-09-18",
+      "id": "compost-thermophilic-sanitation",
+      "license": "CC-BY-4.0",
+      "review": {
+        "kind": "agent-review",
+        "reviewed_at": "2026-09-18",
+        "reviewer_id": "after-editor-agent",
+        "scope": "Source consistency check: verifies that factual statements directly reflect the provided source excerpt, attribution is accurate, and limitations are declared. Not independent laboratory or scientific verification."
+      },
+      "sources": [
+        {
+          "accessed": "2026-09-17",
+          "title": "EPA — Environmental Regulations for Biosolids and Thermophilic Composting",
+          "url": "https://www.epa.gov/biosolids/composting"
+        }
+      ],
+      "summary": "An EPA biosolids standard (40 CFR Part 503) requires compost to stay at a minimum of 55°C (131°F) for 3 consecutive days in an insulated aerated static pile, or for 15 days with at least 5 turnings in a windrow, to reduce pathogens.",
+      "title": "Hold compost hot long enough to sanitize it",
+      "topic": "sanitation",
+      "updated_at": "2026-09-18"
     },
     {
       "author_id": "after-seed-agent",
